@@ -16,6 +16,7 @@
           </div>
 
           <form
+            [formGroup]="loginForm"
             style="padding: 12px"
             (ngSubmit)="onSubmit()"
             class="d-flex flex-column justify-content-center w-100"
@@ -28,7 +29,7 @@
                 <input
                   type="text"
                   class="form-control password-input"
-                  formControlName="email"
+                  formControlName="name"
                   id="name"
                   required
                 />
@@ -43,7 +44,7 @@
                   type="email"
                   class="form-control password-input"
                   formControlName="email"
-                  id="username"
+                  id="email"
                   required
                 />
               </div>

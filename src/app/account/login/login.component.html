@@ -15,6 +15,7 @@
             </h1>
           </div>
           <form
+            [formGroup]="loginForm"
             style="padding: 36px"
             (ngSubmit)="onSubmit()"
             class="d-flex flex-column justify-content-center w-100"
@@ -27,7 +28,7 @@
                 <input
                   type="text"
                   class="form-control password-input"
-                  formControlName="email"
+                  formControlName="username"
                   id="username"
                   placeholder="Enter username"
                   required
