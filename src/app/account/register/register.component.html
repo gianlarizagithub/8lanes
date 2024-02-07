@@ -1,0 +1,146 @@
+<section class="w-100 h-100">
+  <div class="wrapper container">
+    <div class="container main">
+      <div class="row" style="z-index: 2">
+        <div
+          class="left col-lg-6 d-flex flex-column justify-content-center"
+          style="padding: 40px 40px 0 40px"
+        >
+          <div class="d-flex justify-content-center">
+            <h1
+              class="account-heading"
+              style="text-align: center; color: var(--text-color)"
+            >
+              REGISTER
+            </h1>
+          </div>
+
+          <form
+            style="padding: 12px"
+            (ngSubmit)="onSubmit()"
+            class="d-flex flex-column justify-content-center w-100"
+          >
+            <div class="mb-1">
+              <label for="name" class="form-label"
+                >Name <span class="text-danger">*</span></label
+              >
+              <div class="position-relative">
+                <input
+                  type="text"
+                  class="form-control password-input"
+                  formControlName="email"
+                  id="name"
+                  required
+                />
+              </div>
+            </div>
+            <div class="mb-1">
+              <label for="email" class="form-label"
+                >Email Address <span class="text-danger">*</span></label
+              >
+              <div class="position-relative">
+                <input
+                  type="email"
+                  class="form-control password-input"
+                  formControlName="email"
+                  id="username"
+                  required
+                />
+              </div>
+            </div>
+            <div class="mb-1">
+              <label for="username" class="form-label"
+                >Mobile Number <span class="text-danger">*</span></label
+              >
+              <div class="position-relative">
+                <input
+                  type="text"
+                  class="form-control password-input"
+                  formControlName="number"
+                  id="number"
+                  required
+                />
+              </div>
+            </div>
+            <div class="mb-1">
+              <label for="password" class="form-label"
+                >Password <span class="text-danger">*</span></label
+              >
+              <div class="position-relative">
+                <input
+                  type="text"
+                  class="form-control password-input"
+                  formControlName="password"
+                  id="password"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="">
+              <label class="form-label" for="confimrpassword"
+                >Confirm Password <span class="text-danger">*</span></label
+              >
+              <div class="position-relative auth-pass-inputgroup mb-4">
+                <input
+                  [type]="fieldTextType ? 'text' : 'password'"
+                  formControlName="confimrpassword"
+                  type="password"
+                  class="form-control pe-5 password-input"
+                  id="password-input"
+                  required
+                />
+                <button
+                  class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
+                  type="button"
+                  id="password-addon"
+                ></button>
+              </div>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="auth-remember-check"
+              />
+              <label class="form-check-label" for="auth-remember-check"
+                >Aggree with the Terms and Condition</label
+              >
+            </div>
+            <div class="mt-4">
+              <button class="account-btn w-100" type="submit">Sign Up</button>
+            </div>
+            <div class="mt-4 pt-2 text-center">
+              <p>
+                Already Have an Account?
+                <a routerLink="/auth/login">Log in</a>
+              </p>
+            </div>
+          </form>
+        </div>
+        <div class="right d-none d-lg-block col-lg-6 d-flex position-relative">
+          <div
+            class="d-flex h-100 flex-column justify-content-center"
+            style="width: 428px; margin-left: 3rem"
+          >
+            <h1 class="account-heading">Start your journey with us.</h1>
+            <p style="color: var(--custom-white)">
+              Our specialized programs will empower you to become a SAFE driver
+              for life.
+            </p>
+          </div>
+          <div class="logo-account">
+            <img src="/assets/images/logo-for-bar.png" alt="" routerLink="/" />
+          </div>
+          <div class="dots1">
+            <img src="/assets/images/dots1.png" alt="" />
+          </div>
+          <div class="dots2">
+            <img src="/assets/images/dots2.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

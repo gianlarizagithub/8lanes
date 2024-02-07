@@ -1,0 +1,15 @@
+.bg-image {
+  height: 30vh;
+  color: white; /* Set text color to white or any other color that suits your design */
+  text-align: left; /* Center the text */
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+.other-offers h1 {
+  font-family: PrimaryFont;
+}
+
+.other-offers a {
+  color: var(--text-color);
+}

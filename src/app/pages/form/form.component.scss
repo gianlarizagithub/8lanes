@@ -1,0 +1,23 @@
+.bg-image {
+  height: 30vh;
+  color: var(--custom-white);
+  text-align: left; /* Center the text */
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.selected-course-info {
+  margin-top: 3rem;
+}
+
+.myform form {
+  input,
+  select {
+    background: #e1eaf4;
+    border: #7a7c8434;
+  }
+}
+.myform form label {
+  font-weight: 600;
+}
