@@ -1,6 +1,10 @@
 .footer {
   color: var(--custom-white);
   background: $PrimaryBlue;
+
+  @media (max-width: 986px) {
+    margin-top: 2rem;
+  }
 }
 
 .foot-head {
@@ -26,7 +30,7 @@
 
 .logo-footer {
   width: 79px;
-  height: 69px;
+  height: 79px;
   @media (min-width: 600px) {
     width: 74px;
     height: 75px;

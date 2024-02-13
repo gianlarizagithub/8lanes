@@ -31,26 +31,17 @@
   justify-content: center;
 }
 
-// .headings,
-// .carousel-video {
-//   flex: 1;
-// }
-
 .hero section {
-  margin-top: 5rem;
+  margin-top: 3rem;
   max-width: 706px;
   align-self: flex-start;
-  @media (min-width: 600px) {
-    margin-top: 7px;
-  }
-  @media (min-width: 1400px) {
+  // @media (min-width: 600px) {
+  //   margin-top: 7px;
+  // }
+  @media (min-width: 1000px) {
     margin-top: 1rem;
   }
 }
-
-// .hero .container {
-//   flex-direction: column;
-// }
 
 .text-color-black {
   color: var(--text-color);
@@ -58,20 +49,25 @@
 .text-color-white {
   color: var(--custom-white);
 }
+
 .heading-style {
   font-family: SecondaryFont;
-  font-size: 38px;
-  @media (min-width: 600px) {
-    font-size: 45px;
-  }
+  font-size: 25px;
 
-  @media (min-width: 1400px) {
-    font-size: 52px;
-  }
+  // @media (min-width: 330px) {
+  //   font-size: 35px;
+  // }
+  // @media (min-width: 600px) {
+  //   font-size: 45px;
+  // }
 
-  @media (min-width: 1600px) {
-    font-size: 61px;
-  }
+  // @media (min-width: 1400px) {
+  //   font-size: 52px;
+  // }
+
+  // @media (min-width: 1600px) {
+  //   font-size: 61px;
+  // }
 }
 
 .heading-style h2 {
@@ -81,19 +77,22 @@
 .paragraph-style {
   color: var(--custom-white);
   max-width: 600px;
-  font-size: 15px;
-  margin-bottom: 0;
-  @media (min-width: 600px) {
-    font-size: 19px;
-  }
+  // font-size: 11px;
+  font-size: 1em;
+  // margin: 0 auto;
+  // margin-bottom: 0;
 
-  @media (min-width: 1400px) {
-    font-size: 20px;
-  }
+  // @media (min-width: 600px) {
+  //   font-size: 19px;
+  // }
 
-  @media (min-width: 1600px) {
-    font-size: 25px;
-  }
+  // @media (min-width: 1400px) {
+  //   font-size: 20px;
+  // }
+
+  // @media (min-width: 1600px) {
+  //   font-size: 25px;
+  // }
 }
 
 // .headings p {
@@ -287,10 +286,54 @@
   }
 }
 
+///// BREAKPOINTS /////
+@media (min-width: 330px) {
+  h1.heading-style {
+    font-size: 35px;
+  }
+  p.paragraph-style {
+    font-size: 1.2em;
+  }
+}
+@media (min-width: 600px) {
+  h1.heading-style {
+    font-size: 45px;
+  }
+  p.paragraph-style {
+    font-size: 1.5em;
+  }
+}
+
+@media (min-width: 1400px) {
+  h1.heading-style {
+    font-size: 52px;
+  }
+  p.paragraph-style {
+    font-size: 1.8em;
+  }
+}
+
+@media (min-width: 1600px) {
+  h1.heading-style {
+    font-size: 61px;
+  }
+  p.paragraph-style {
+    font-size: 2em;
+  }
+}
+
 .image-check-adv {
   // border: 1px solid red;
   width: 100%;
-  height: 496px;
+  height: 300px;
+  @media (min-width: 400px) {
+    height: 350px;
+  }
+
+  @media (min-width: 470px) {
+    height: 560px;
+  }
+
   @media (min-width: 762px) {
     height: 710px;
   }
