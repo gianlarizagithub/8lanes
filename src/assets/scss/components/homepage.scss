@@ -161,7 +161,7 @@
 
 .carousel-container {
   // border: 1px solid red;
-  height: 360px;
+  height: 419px;
   position: absolute;
   right: 0;
   // z-index: 3;
@@ -170,9 +170,9 @@
   max-width: 750px;
   margin-left: auto;
   margin-right: auto;
-  @media (min-width: 1600px) {
-    height: 440px;
-  }
+  // @media (min-width: 1600px) {
+  //   height: 440px;
+  // }
 }
 
 .subheading {
