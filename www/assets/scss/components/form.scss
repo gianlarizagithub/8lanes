@@ -1,0 +1,18 @@
+.bg-image {
+  height: 30vh;
+  color: white; /* Set text color to white or any other color that suits your design */
+  text-align: left; /* Center the text */
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.selected-course {
+  width: 100%;
+  width: 100%;
+}
+.selected-course img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
