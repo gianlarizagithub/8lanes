@@ -2,15 +2,18 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { canactivateloggedinGuard } from '../authguard/canactivateloggedin.guard';
 
 const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+     canActivate: [canactivateloggedinGuard]
   },
   {
     path: 'register',
     component: RegisterComponent,
+    canActivate: [canactivateloggedinGuard]
   },
 ];
 

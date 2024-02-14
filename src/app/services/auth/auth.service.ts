@@ -1,7 +1,9 @@
-import { Injectable } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { FirebaseError } from '@angular/fire/app';
-import { signInWithEmailAndPassword, Auth, createUserWithEmailAndPassword, signOut, sendPasswordResetEmail, updateProfile  } from '@angular/fire/auth';
+import { signInWithEmailAndPassword, Auth, createUserWithEmailAndPassword, signOut, sendPasswordResetEmail, updateProfile, authState, user  } from '@angular/fire/auth';
 import { collection, where, collectionData, doc, docData, addDoc, setDoc, updateDoc, deleteDoc, Firestore } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
 import { query } from 'express';
 import { Observable, from, catchError, throwError, map } from 'rxjs';
 
@@ -11,13 +13,36 @@ import { Observable, from, catchError, throwError, map } from 'rxjs';
 })
 export class AuthService {
 
-
+public user: any;
+public displayname: any;
   constructor
   (
     private auth: Auth,
     private firestore: Firestore,
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) 
-  { }
+
+  { 
+    
+    if (isPlatformBrowser(this.platformId)) 
+    {
+      this.displayname = localStorage.getItem('displayname')
+    }
+    // authState(this.auth).subscribe((data) => 
+    // {
+      
+    //   if (data && data.uid) 
+    //   {
+    //     this.displayname = data?.displayName; 
+    //   }
+    //   else 
+    //   {
+    //     this.displayname = undefined;
+    //   }
+    // })
+
+  }
 
 
   // getDataAny(parameter: any, arraystring: any)
@@ -60,10 +85,28 @@ export class AuthService {
   //   return deleteDoc($productRef);
   // }
 
+saveUserInfoAfterRegistering(specificData: any, uid: any) 
+{
+  let $postDataQuery = doc(this.firestore, `User/${uid}`);
+  return setDoc($postDataQuery, specificData);
+}
 
 
+get isLoggedIn(): boolean 
+{
+  // if (isPlatformBrowser(this.platformId)) {
+  //   return this.displayname !== null ? true : false
+  // }
 
+  return isPlatformBrowser(this.platformId) ? localStorage.getItem('displayname') != null ? true : false : false
+  
+}
 
+setDisplayNameLocalStorage(role: any) 
+{
+  if (isPlatformBrowser(this.platformId)) 
+  localStorage.setItem('displayname', role)
+}
 
    
   signIn(params: any): Observable<any>
@@ -157,15 +200,10 @@ export class AuthService {
     return message;
   }
 
-get isLoggedIn(): boolean 
-{
-  const user = this.auth.currentUser?.displayName;
-  return (user == null || user == "" ||  user == undefined) ? false : true; 
-}
-
 SignOut() 
 {
-  signOut(this.auth);
+  localStorage.removeItem('displayname');
+  this.router.navigate(['/auth/login'])
 }
 
 }

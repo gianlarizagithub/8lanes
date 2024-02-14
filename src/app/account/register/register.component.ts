@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
 import { updateProfile } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -27,7 +28,8 @@ export class RegisterComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -54,6 +56,7 @@ export class RegisterComponent {
   onSubmit() {
     // console.log("password value", this.f['password'].value)
 
+    
     if (this.signupForm.valid) 
     {
       var params = {
@@ -65,7 +68,16 @@ export class RegisterComponent {
         next: async (res) => 
         {
           updateProfile(res.user, {displayName: 'customer'});
-          console.log("success register", res)
+          this.authService.setDisplayNameLocalStorage('customer');
+          var specificDataObject = 
+          {
+            email: this.f['email'].value,
+            name: this.f['name'].value,
+            phonenumber: this.f['number'].value
+          }
+          this.authService.saveUserInfoAfterRegistering(specificDataObject, res.user.uid)
+          this.router.navigate(['/form'])
+          
         },
         error: async (err) => 
         {
