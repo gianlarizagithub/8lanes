@@ -1,0 +1,25 @@
+$PrimaryBlue: #0b3c99;
+$PrimaryRed: #ff0101;
+$CustomWhite: #fdfeff;
+$custom-margin-top-mobile: 7rem;
+$custom-margin-top-desktop: 18rem;
+
+:root {
+  --custom-white: #fdfeff;
+  --text-color: #051534;
+}
+
+@font-face {
+  font-family: "PrimaryFont";
+  src: url("./font/secondaryFont/Karla-Regular.ttf");
+}
+
+@font-face {
+  font-family: "SecondaryFont";
+  src: url("./font/primaryFont/Rubik-Bold.ttf");
+}
+
+@font-face {
+  font-family: "SecondaryFontMedium";
+  src: url("./font/primaryFont/Rubik-Medium.ttf");
+}

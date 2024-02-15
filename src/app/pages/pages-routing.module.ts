@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { CoursesComponent } from './courses/courses.component';
 import { FormComponent } from './form/form.component';
 import { AboutComponent } from './about/about.component';
+import { canactivateGuard } from '../authguard/canactivate.guard';
 
 const routes: Routes = [
   {
@@ -21,6 +22,7 @@ const routes: Routes = [
   {
     path: 'form',
     component: FormComponent,
+    canActivate: [canactivateGuard]
   },
 ];
 

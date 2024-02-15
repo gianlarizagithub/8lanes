@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "8lanesProject": {
+    "8lanesproject": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "8lanesProject:build:production"
+              "buildTarget": "8lanesproject:build:production"
             },
             "development": {
-              "buildTarget": "8lanesProject:build:development"
+              "buildTarget": "8lanesproject:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -80,7 +80,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "8lanesProject:build"
+            "buildTarget": "8lanesproject:build"
           }
         },
         "test": {
@@ -96,5 +96,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "73d532a2-a567-4224-89c4-51bfcc15807d"
   }
 }

@@ -70,6 +70,8 @@
         </ul>
 
         <ul class="navbar-nav mb-2 mb-lg-0 login">
+          
+          @if (!alreadyLoggedIn) {
           <li class="nav-item">
             <a
               class="nav-link active"
@@ -81,6 +83,11 @@
           <li class="nav-item">
             <a class="nav-link" routerLink="/auth/register">REGISTER</a>
           </li>
+        } @else {
+          <li class="nav-item">
+            <a class="nav-link" type="button" (click)="signout()">LOGOUT</a>
+          </li>
+        } 
         </ul>
       </div>
     </div>

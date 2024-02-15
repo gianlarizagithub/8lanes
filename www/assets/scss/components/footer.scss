@@ -1,0 +1,43 @@
+.footer {
+  color: var(--custom-white);
+  background: $PrimaryBlue;
+}
+
+.foot-head {
+  font-family: SecondaryFont;
+  font-size: 15px;
+  margin-bottom: 0;
+}
+
+.foot-sub {
+  font-size: 13px;
+}
+
+.foot-icons svg {
+  width: 72px;
+  height: 25px;
+}
+.foot-content:last-child {
+  flex: 2;
+}
+.foot-content {
+  flex: 3;
+}
+
+.logo-footer {
+  width: 79px;
+  height: 69px;
+  @media (min-width: 600px) {
+    width: 74px;
+    height: 75px;
+  }
+  @media (min-width: 1200px) {
+    width: 100px;
+    height: 100px;
+  }
+}
+.logo-footer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
