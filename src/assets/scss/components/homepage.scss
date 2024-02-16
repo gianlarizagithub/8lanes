@@ -355,6 +355,10 @@
     margin-top: $custom-margin-top-desktop;
     height: 1134px;
   }
+
+  @media (min-width: 1600px) {
+    height: 1500px;
+  }
 }
 
 .location-section {
