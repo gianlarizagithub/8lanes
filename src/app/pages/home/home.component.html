@@ -79,6 +79,7 @@
           </div>
         </div>
       </div>
+
       <section
         class="headings d-flex"
         style="
@@ -88,23 +89,26 @@
           gap: 15px;
         "
       >
-        <h1 class="heading-style text-color-white">
-          Precision Driving Academy: Your Road to Confidence
-        </h1>
-        <p class="paragraph-style">
-          Our specialized programs will empower you to become a SAFE driver for
-          life.
-        </p>
-        <div class="buttons">
-          <button class="btn1">
-            <a
-              routerLink="/courses"
-              style="text-decoration: none; color: var(--custom-white)"
-              >Enroll Now</a
-            >
-          </button>
-          <button class="btn2">About Us</button>
+        <div class="hero-content">
+          <h1 class="heading-style text-color-white">
+            Precision Driving Academy: Your Road to Confidence
+          </h1>
+          <p class="paragraph-style">
+            Our specialized programs will empower you to become a SAFE driver
+            for life.
+          </p>
+          <div class="buttons">
+            <button class="btn1">
+              <a
+                routerLink="/courses"
+                style="text-decoration: none; color: var(--custom-white)"
+                >Enroll Now</a
+              >
+            </button>
+            <button class="btn2">About Us</button>
+          </div>
         </div>
+
         <div
           class="icon-container d-flex gap-2 flex-column d-lg-none"
           style="margin-top: 14px"
@@ -174,7 +178,7 @@
     </div>
   </div>
 
-  <div class="carousel-container d-none d-xxl-block" style="overflow: hidden">
+  <div class="s carousel-container d-none d-xxl-block" style="overflow: hidden">
     <div style="max-height: 500px">
       <div
         id="carouselExampleFade"
@@ -182,25 +186,25 @@
         data-bs-ride="carousel"
       >
         <div class="carousel-inner">
-          <div class="carousel-item active" data-bs-interval="1000">
+          <div class="carousel-item active" data-bs-interval="2000">
             <img
-              src="/assets/images/img1.jpeg"
+              src="/assets/images/landing-img1(727x419).jpg"
               class="d-block w-100"
               alt="Slide 1"
               style="object-fit: cover"
             />
           </div>
-          <div class="carousel-item" data-bs-interval="1000">
+          <div class="carousel-item" data-bs-interval="2000">
             <img
-              src="/assets/images/img2.jpeg"
+              src="/assets/images/landing-img2(727x419).jpg"
               class="d-block w-100"
               alt="Slide 2"
               style="object-fit: cover"
             />
           </div>
-          <div class="carousel-item" data-bs-interval="1000">
+          <div class="carousel-item" data-bs-interval="2000">
             <img
-              src="/assets/images/img3.jpg"
+              src="/assets/images/landing-img3(727x419).jpg"
               class="d-block w-100"
               alt="Slide 3"
               style="object-fit: cover"
@@ -248,29 +252,29 @@
     <div
       class="courses d-flex flex-column flex-xxl-row gap-5 align-items-center justify-content-around"
     >
-      <div class="course">
-        <img src="/assets/images/img1.jpeg" alt="" />
+      <div class="course shadow fading-in">
+        <img src="/assets/images/img1.jpeg " alt="" />
         <div
           class="title-box d-flex flex-column justify-content-center"
           style="text-align: center; background: #0b3c99"
         >
-          <h1 class="heading-style h2" style="color: #fdfeff; margin-bottom: 0">
+          <h2 class="heading-style h2" style="color: #fdfeff; margin-bottom: 0">
             DRIVING SCHOOL
-          </h1>
+          </h2>
           <span class="paragraph-style" style="font-size: 15px">
             (THEORETICAL/PRACTICAL)
           </span>
         </div>
       </div>
-      <div class="course">
+      <div class="course shadow fading-in">
         <img src="/assets/images/img3.jpg" alt="" />
         <div
           class="title-box d-flex flex-column justify-content-center"
           style="text-align: center"
         >
-          <h1 class="heading-style h2" style="color: #fdfeff">
+          <h2 class="heading-style h2" style="color: #fdfeff">
             DRIVING TUTORIAL
-          </h1>
+          </h2>
         </div>
       </div>
     </div>
@@ -286,10 +290,10 @@
     class="container about-content d-flex flex-column align-items-center gap-3"
     style="z-index: 2"
   >
-    <div class="about-logo">
+    <div class="about-logo fading-in">
       <img src="/assets/images/8lanes-m.png" alt="" />
     </div>
-    <h1 class="heading-style h2">ADVANTAGE</h1>
+    <h2 class="heading-style h2">ADVANTAGE</h2>
     <p class="subheading" style="text-align: center">
       With our comprehensive driving lessons, you'll gain the skills and
       confidence needed to pass your driving test.
@@ -305,6 +309,8 @@
 
   <div class="image-check-adv">
     <!-- <h2>content</h2> -->
+
+    <!-- this is for min width 404px-->
     <img class="d-lg-none" src="/assets/images/bar-m.png" alt="" />
     <img
       class="d-none d-lg-block"
@@ -313,17 +319,16 @@
       alt=""
     />
   </div>
-  
 </section>
 
 <section
   id="contacts"
-  class="container location-section d-flex flex-column flex-lg-row align-items-center"
+  class="container location-section d-flex flex-column-reverse flex-lg-row align-items-center gap-5"
 >
-  <div class="img-location">
+  <div class="img-location shadow fading-in">
     <img src="/assets/images/loc-img.png" alt="location" />
   </div>
-  <div style="padding: 20px">
+  <div style="max-width: 547px">
     <h1 class="heading-style text-color-black text-center mt-3">
       OUR LOCATION
     </h1>
