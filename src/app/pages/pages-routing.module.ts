@@ -5,6 +5,7 @@ import { CoursesComponent } from './courses/courses.component';
 import { FormComponent } from './form/form.component';
 import { AboutComponent } from './about/about.component';
 import { canactivateGuard } from '../authguard/canactivate.guard';
+import { UsercourselistComponent } from './usercourselist/usercourselist/usercourselist.component';
 
 const routes: Routes = [
   {
@@ -15,15 +16,20 @@ const routes: Routes = [
     path: 'courses',
     component: CoursesComponent,
   },
-  {
-    path: 'about',
-    component: AboutComponent,
-  },
+  // {
+  //   path: 'about',
+  //   component: AboutComponent,
+  // },
   {
     path: 'form',
     component: FormComponent,
     canActivate: [canactivateGuard]
   },
+  {
+    path: 'mycourse',
+    component: UsercourselistComponent,
+    canActivate: [canactivateGuard]
+  }
 ];
 
 @NgModule({

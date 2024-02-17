@@ -46,11 +46,10 @@ public retrieveParentGurdianCityFromProvinceLength: number = 0;
 public retrieveParentGurdianBarangayFromCity!: any;
 public retrieveParentGurdianBarangayFromCityLength: number = 0;
 public disabledSubmitButton: boolean = false;
+public currentuserloggedinobject: any;
 constructor( private formBuilder: FormBuilder, private authService: AuthService, private createService: CreateService) 
 {
   this.applyCourseFormBuilder()
-  
-  console.log("test", this.authService.currentUserID)
 }
 get f() {
   return this.applyCourseForm.controls;
@@ -68,7 +67,7 @@ get f() {
     await this.retrieveOccupationsLogic();
     await this.retrieveBirthplaceRegionProvinceCityBarangayLogic();
     await this.retrieveParentGurdianRegionProvinceCityBarangayLogic();
-
+    this.currentuserloggedinobject = this.authService.getCurrentUserLoggedInObject()
   }
 applyCourseFormBuilder() 
 { 
@@ -109,7 +108,12 @@ this.applyCourseForm  = this.formBuilder.group
   parentregion: ['', Validators.required],
   parentprovince: ['', Validators.required],
   parentcity: ['', Validators.required],
-  parentbarangay: ['', Validators.required]
+  parentbarangay: ['', Validators.required],
+  userid: [this.authService.getCurrentUserLoggedInObject().uid],
+  status: ['Pending'],
+  dateapplied: [new Date()],
+  paid: [false],
+  dateset: [new Date()]
 })
 }
 async retrievSuiffxNameLogic() 
@@ -262,6 +266,7 @@ onSubmit()
   if (this.applyCourseForm.valid) 
   {
     this.disabledSubmitButton = true;
+  
     this.createService
       .addNewAppliedCourse(this.applyCourseForm.value)
       .then((el) => {

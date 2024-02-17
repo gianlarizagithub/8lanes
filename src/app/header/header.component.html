@@ -1,3 +1,19 @@
+
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title">Modal title</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<p>One fine body&hellip;</p>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Close</button>
+	</div>
+</ng-template>
+
+
+
 <nav
   class="navbar navbar-expand-lg navbar-dark fixed-top"
   [ngClass]="{ transparent: !isScrolled, 'bg-blue': isScrolled }"
@@ -67,21 +83,29 @@
               CONTACT US</a
             >
           </li>
+          @if (alreadyLoggedIn) {
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/mycourse"
+              ><div class="circles green"></div>
+              MY COURSE</a
+            >
+          </li>
+        }
         </ul>
 
         <ul class="navbar-nav mb-2 mb-lg-0 login">
           
           @if (!alreadyLoggedIn) {
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a
               class="nav-link active"
               routerLink="/auth/login"
               style="color: yellow"
               >LOG IN</a
             >
-          </li>
+          </li> -->
           <li class="nav-item">
-            <a class="nav-link" routerLink="/auth/register">REGISTER</a>
+            <a class="nav-link active"  style="color: yellow" routerLink="/auth/register">REGISTER</a>
           </li>
         } @else {
           <li class="nav-item">

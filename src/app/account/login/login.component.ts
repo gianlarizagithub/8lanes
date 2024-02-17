@@ -62,13 +62,12 @@ export class LoginComponent {
       ({
         next: async (res) => 
         {
-          this.authService.setDisplayNameLocalStorage(res.user.displayName);
+          this.authService.setDisplayNameLocalStorage(res.user.displayName, res.user);
           this.router.navigate(['/form'])
         },
         error: async (err) => 
         {
-            console.log("the error", err)
-          alert(JSON.stringify(err))
+         await alert(JSON.stringify(err))
         }
       })
     }

@@ -9,6 +9,11 @@ const routes: Routes =
 [
   {
     path: '',
+    pathMatch: 'full',
+    redirectTo: ''
+  },
+  {
+    path: '',
     component: LayoutsComponent,
     loadChildren: () =>
       import('./pages/pages.module').then((m) => m.PagesModule),

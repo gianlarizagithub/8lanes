@@ -16,6 +16,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './services/auth/auth.service';
 import { CreateService } from './services/create/create.service';
+import { NgxMapLibreGLModule } from '@maplibre/ngx-maplibre-gl';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { CreateService } from './services/create/create.service';
     FormsModule,
     BrowserModule, 
     AppRoutingModule, 
+    NgxMapLibreGLModule,
     provideFirebaseApp(() => 
     initializeApp({"projectId":"lanesdrivingschool-ba107","appId":"1:499280610208:web:dfc13661360a2029f99ac5","storageBucket":"lanesdrivingschool-ba107.appspot.com",
     "apiKey":"AIzaSyCiADsvEnNlG6iOVi0JagfolEnICFQly2w","authDomain":"lanesdrivingschool-ba107.firebaseapp.com","messagingSenderId":"499280610208",
