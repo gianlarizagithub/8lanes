@@ -2,9 +2,8 @@ import { isPlatformBrowser } from '@angular/common';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { FirebaseError } from '@angular/fire/app';
 import { signInWithEmailAndPassword, Auth, createUserWithEmailAndPassword, signOut, sendPasswordResetEmail, updateProfile, authState, user  } from '@angular/fire/auth';
-import { collection, where, collectionData, doc, docData, addDoc, setDoc, updateDoc, deleteDoc, Firestore } from '@angular/fire/firestore';
+import { collection, where, collectionData, doc, docData, addDoc, setDoc, updateDoc, deleteDoc, Firestore, query } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-import { query } from 'express';
 import { Observable, from, catchError, throwError, map } from 'rxjs';
 
 
@@ -15,6 +14,7 @@ export class AuthService {
 
 public user: any;
 public displayname: any;
+public currentUserID: string = "";
   constructor
   (
     private auth: Auth,
@@ -29,18 +29,17 @@ public displayname: any;
     {
       this.displayname = localStorage.getItem('displayname')
     }
-    // authState(this.auth).subscribe((data) => 
-    // {
+    authState(this.auth).subscribe((data) => 
+    {
       
-    //   if (data && data.uid) 
-    //   {
-    //     this.displayname = data?.displayName; 
-    //   }
-    //   else 
-    //   {
-    //     this.displayname = undefined;
-    //   }
-    // })
+      if (data && data.uid) 
+      {
+        this.currentUserID = data.uid;
+      }
+      else 
+      {
+      }
+    })
 
   }
 
@@ -84,6 +83,7 @@ public displayname: any;
   //   let $productRef= doc(this.firestore,`${parameter}/${id}`);
   //   return deleteDoc($productRef);
   // }
+
 
 saveUserInfoAfterRegistering(specificData: any, uid: any) 
 {
@@ -202,6 +202,7 @@ setDisplayNameLocalStorage(role: any)
 
 SignOut() 
 {
+  signOut(this.auth)
   localStorage.removeItem('displayname');
   this.router.navigate(['/auth/login'])
 }

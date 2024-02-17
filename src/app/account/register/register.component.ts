@@ -30,7 +30,9 @@ export class RegisterComponent {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router
-  ) {}
+  ) 
+  {
+  }
 
   ngOnInit(): void {
     this.signupForm = this.formBuilder.group({
@@ -49,7 +51,6 @@ export class RegisterComponent {
       confirmpassword: ['', Validators.required],
     });
   }
-
   get f() {
     return this.signupForm.controls;
   }
@@ -91,7 +92,6 @@ export class RegisterComponent {
       this.validateAllFormFields(this.signupForm);
     }
   }
-
   validateAllFormFields(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach((field) => {
       const control = formGroup.get(field);
@@ -102,22 +102,18 @@ export class RegisterComponent {
       }
     });
   }
-
   toggleFieldTextType() {
     this.fieldTextType = !this.fieldTextType;
   }
-
   passwordFieldcontainsUppercase(str: string) {
     return /[A-Z]/.test(str);
   }
-
   passwordFieldcontainsLowercase(str: string) {
     return /[a-z]/.test(str);
   }
   passwordFieldcontainsNumber(str: string) {
     return /[0-9]/.test(str);
   }
-
   passwordFieldcontainsSpecialCharacters(str: string) {
     return /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(str);
   }
