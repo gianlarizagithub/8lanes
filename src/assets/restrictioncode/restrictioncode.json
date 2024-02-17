@@ -1,0 +1,25 @@
+[
+    {
+        "Type": "Motorcycle",
+        "Code": "A-Motorcycle"
+    },
+    {
+        "Type": "Motorcycle",
+        "Code": "A-Tricycle"
+    },
+
+    {
+        "Type": "Light Vehicle",
+        "Code": "B-Up to 5000kgs/8seats"
+    },
+
+    {
+        "Type": "Light Vehicle",
+        "Code": "B1-Up to 5000kgs/>8seats"
+    },
+
+    {
+        "Type": "Light Vehicle",
+        "Code": "B2-Goods <3500kgs"
+    }
+]

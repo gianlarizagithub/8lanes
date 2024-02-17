@@ -52,67 +52,1114 @@
   <!-- <span class="subheading"
     >Fill up form or <a href="/auth/login"> log in</a></span
   > -->
-  <form style="margin-top: 2rem">
-    <!-- First Row (Large Screen) -->
+  <form style="margin-top: 2rem" [formGroup]="applyCourseForm" (ngSubmit)="onSubmit()">
+    <!-- First Row (Large Screen) --> 
+   
     <div class="row" style="margin-bottom: 1rem">
-      <div class="col-12 col-lg-4">
+    
+      <div class="col-12 col-lg-6">
+        <label for="inputCourse">Course</label>
+        <select id="selectCourse" formControlName="course" class="form-control"
+        [class.is-valid]="applyCourseForm.controls['course'].status != 'INVALID'"
+        [class.is-invalid]="applyCourseForm.controls['course'].dirty && applyCourseForm.hasError('required', 'course')">
+          <option selected value="">*SELECT COURSE</option>
+        
+          @for (course of courseList; track course.CourseName) {
+          <option [value]="course.CourseName">{{course.CourseName}}</option>            
+          }
+        
+        </select>
+
+        @if(applyCourseForm.controls['course'].dirty && applyCourseForm.hasError('required', 'course')) {
+                
+          <div class="invalid-feedback">
+          Please provide a course.
+        </div>
+      
+      } @else {
+        <div class="valid-feedback">
+          Looks Good!
+        </div>
+      }
+
+      </div>
+
+      
+      <div class="col-12 col-lg-6">
+        <label for="inputTransmission">Transmission</label>
+        <select id="selectTransmission" formControlName="transmission" class="form-control"
+        [class.is-valid]="applyCourseForm.controls['transmission'].status != 'INVALID'"
+        [class.is-invalid]="applyCourseForm.controls['transmission'].dirty && applyCourseForm.hasError('required', 'transmission')">
+          <option selected value="">*SELECT TRANSMISSION</option>
+        
+          @for (transmission of transmissionList; track transmission.Type) {
+          <option [value]="transmission.Type">{{transmission.Type}}</option>            
+          }
+        </select>
+       
+    
+      @if(applyCourseForm.controls['transmission'].dirty && applyCourseForm.hasError('required', 'transmission')) {
+                
+        <div class="invalid-feedback">
+        Please provide a transmission.
+      </div>
+    
+    } @else {
+      <div class="valid-feedback">
+        Looks Good!
+      </div>
+    }
+    </div>
+
+    </div>
+    
+
+
+    <div class="row" style="margin-bottom: 1rem">
+      
+      <div class="col-12 col-lg-6">
+        <label for="inputTypeofVehicle">Type of Vehicle</label>
+        <select id="selectinputTypeofVehicle" formControlName="typeofvehicle" class="form-control"
+        [class.is-valid]="applyCourseForm.controls['typeofvehicle'].status != 'INVALID'" 
+        [class.is-invalid]="applyCourseForm.controls['typeofvehicle'].dirty && applyCourseForm.hasError('required', 'typeofvehicle')" >
+          <option selected value="">*SELECT VEHICLE</option>
+        
+          @for (typeofvehicle of typeofvehicleList; track typeofvehicle.Type) {
+          <option [value]="typeofvehicle.Type">{{typeofvehicle.Type}}</option>            
+          }
+        
+        </select>
+
+        @if(applyCourseForm.controls['typeofvehicle'].dirty && applyCourseForm.hasError('required', 'typeofvehicle')) {
+                
+          <div class="invalid-feedback">
+          Please provide a type of vehicle.
+        </div>
+      
+      } @else {
+        <div class="valid-feedback">
+          Looks Good!
+        </div>
+      }
+
+      </div>
+
+
+
+      
+      <div class="col-12 col-lg-6">
+        <label for="inputRestrictionCode">Restriction Code</label>
+        <select id="selectRestrictionCode" formControlName="restrictioncode" class="form-control"
+        [class.is-valid]="applyCourseForm.controls['restrictioncode'].status != 'INVALID'" 
+        [class.is-invalid]="applyCourseForm.controls['restrictioncode'].dirty && applyCourseForm.hasError('required', 'restrictioncode')">
+       
+          @if(restrictioncodeListLength > 0) {
+           
+            <option selected value="">*SELECT CODE</option>
+       
+            @for (restrictioncode of restrictioncodeList; track restrictioncode.Code) {
+              <option [value]="restrictioncode.Code">{{restrictioncode.Code}}</option>            
+              }
+          }@else {
+            <option selected value="">*SELECT CODE</option>
+        
+          }
+          
+          
+        </select>
+
+        @if(applyCourseForm.controls['restrictioncode'].dirty && applyCourseForm.hasError('required', 'restrictioncode')) {
+                
+          <div class="invalid-feedback">
+          Please provide a restriction code.
+        </div>
+      
+      } @else {
+        <div class="valid-feedback">
+          Looks Good!
+        </div>
+      } 
+      </div>
+
+    </div>
+
+
+
+
+
+
+    <div class="row" style="margin-bottom: 1rem">
+      
+      <div class="col-12 col-lg-3">
         <label for="inputLastName">Last Name</label>
         <input
           type="text"
           class="form-control"
           id="inputLastName"
           placeholder="Warnakulahewa"
+          formControlName="lastname"
+  [class.is-valid]="applyCourseForm.controls['lastname'].status != 'INVALID' && !applyCourseForm.hasError('pattern', 'lastname')" 
+  [class.is-invalid]="(applyCourseForm.controls['lastname'].dirty && applyCourseForm.hasError('required', 'lastname') ) || (applyCourseForm.controls['lastname'].dirty && applyCourseForm.hasError('pattern', 'lastname') )"
         />
+
+        @if( (applyCourseForm.controls['lastname'].dirty && applyCourseForm.hasError('required', 'lastname') ) || (applyCourseForm.controls['lastname'].dirty && applyCourseForm.hasError('pattern', 'lastname') )  ) {
+                
+          <div class="invalid-feedback">
+            Please provide a valid last name
+        </div>
+      
+      } @else {
+        <div class="valid-feedback">
+          Looks Good!
+        </div>
+      }
+
+     
+     
       </div>
-      <div class="col-12 col-lg-4">
+
+      <div class="col-12 col-lg-3">
         <label for="inputFirstName">First Name</label>
         <input
           type="text"
           class="form-control"
           id="inputFirstName"
-          placeholder="Ente"
-        />
+          placeholder="Mark Jayson"
+          formControlName="firstname"
+          [class.is-valid]="applyCourseForm.controls['firstname'].status != 'INVALID' && !applyCourseForm.hasError('pattern', 'firstname')" 
+          [class.is-invalid]="(applyCourseForm.controls['firstname'].dirty && applyCourseForm.hasError('required', 'firstname') ) || (applyCourseForm.controls['firstname'].dirty && applyCourseForm.hasError('pattern', 'firstname') )"
+
+          />
+
+          @if( (applyCourseForm.controls['firstname'].dirty && applyCourseForm.hasError('required', 'firstname') ) || (applyCourseForm.controls['firstname'].dirty && applyCourseForm.hasError('pattern', 'firstname') )  ) {
+                
+            <div class="invalid-feedback">
+              Please provide a valid first name.
+          </div>
+        
+        } @else {
+          <div class="valid-feedback">
+            Looks Good!
+          </div>
+        }
+
+
+
+
+        </div>
+
+
+
+
+      <div class="col-12 col-lg-3">
+        <label for="inputContact">Suffix Name (if any)</label>
+        <select id="selectSuffixName" formControlName="suffixname" class="form-control">
+          <option selected value="">*SELECT SUFFIX NAME</option>
+          @for (suffix of suffixnamesList; track suffix.name) {
+          <option [value]="suffix.name">{{suffix.name}}</option>            
+          }
+        </select>
       </div>
-      <div class="col-12 col-lg-4">
-        <label for="inputContact">Contact Number</label>
+
+
+
+
+
+
+
+
+      <div class="col-12 col-lg-3">
+        <label for="inputMiddleName">Middle Name</label>
         <input
+          type="text"
           class="form-control"
-          type="tel"
-          id="inputContact"
-          placeholder="123-456-7890"
-        />
-      </div>
+          id="inputMiddleName"
+          placeholder="Talakag"
+          formControlName="middlename"          
+          [class.is-valid]="applyCourseForm.controls['middlename'].status != 'INVALID' && !applyCourseForm.hasError('pattern', 'middlename')" 
+          [class.is-invalid]="(applyCourseForm.controls['middlename'].dirty && applyCourseForm.hasError('required', 'middlename') ) || (applyCourseForm.controls['middlename'].dirty && applyCourseForm.hasError('pattern', 'middlename') )"
+
+          />
+          @if( (applyCourseForm.controls['middlename'].dirty && applyCourseForm.hasError('required', 'middlename') ) || (applyCourseForm.controls['middlename'].dirty && applyCourseForm.hasError('pattern', 'middlename') )  ) {
+                
+            <div class="invalid-feedback">
+            Please Provide a valid middle name.
+          </div>
+        
+        } @else {
+          <div class="valid-feedback">
+            Looks Good!
+          </div>
+        }
+
+        </div>
     </div>
+
+
+
+
+
+
+
 
     <div class="row" style="margin-bottom: 1rem">
       <div class="col-12">
-        <label for="address">Address</label>
+        <label for="address">Address (Number, Street, Purok, District)</label>
         <input
+        type="text"
           class="form-control"
           id="address"
           placeholder="Enter Full Address"
+          formControlName="address"
         />
       </div>
     </div>
 
+
+
+
+
+
     <div class="row" style="margin-bottom: 1rem">
-      <div class="col-12 col-md-6">
-        <label for="selectCourse">Type of Courses</label>
-        <select id="selectCourse" class="form-control">
-          <option selected>Theoretical</option>
-          <option>Practical</option>
+
+      <div class="col-12 col-md-3">
+        <label for="selectRegion">Region</label>
+        <select id="selectRegion" formControlName="region" class="form-control"
+        [class.is-valid]="applyCourseForm.controls['region'].status != 'INVALID'" 
+        [class.is-invalid]="applyCourseForm.controls['region'].dirty && applyCourseForm.hasError('required', 'region')">
+          <option value="" selected>*SELECT REGION</option>
+          @for (data of retrievePhil_Prov_Mun_BarList; track data.region_name) 
+            {
+            <option [value]="data.region_name">{{data.region_name}}</option>            
+            }
         </select>
+        @if(applyCourseForm.controls['region'].dirty && applyCourseForm.hasError('required', 'region')) {
+                
+          <div class="invalid-feedback">
+          Please provide a region.
+        </div>
+      
+      } @else {
+        <div class="valid-feedback">
+          Looks Good!
+        </div>
+      }
       </div>
-      <div class="col-12 col-md-6">
-        <label for="selectPayment">Payment Method</label>
-        <select id="selectPayment" class="form-control">
-          <option selected>Choose...</option>
-          <option>Credit Card</option>
-          <option>PayPal</option>
-          <option>Cash</option>
+
+
+
+
+      <div class="col-12 col-md-3">
+        <label for="selectProvince">Province</label>
+        <select id="selectProvince" formControlName="province" class="form-control"
+        [class.is-valid]="applyCourseForm.controls['province'].status != 'INVALID'" 
+        [class.is-invalid]="applyCourseForm.controls['province'].dirty && applyCourseForm.hasError('required', 'province')" 
+>
+          @if(retrieveProvinceFromRegionLength > 0) {
+            <option selected value="">*SELECT PROVINCE</option>
+            @for (data of retrieveProvinceFromRegion; track data) {
+              <option [value]="data">{{data}}</option>
+            }
+          }@else {
+            <option selected value="" disabled>*SELECT PROVINCE</option>
+          }
+          
         </select>
+
+        @if(applyCourseForm.controls['province'].dirty && applyCourseForm.hasError('required', 'province')) {
+                
+          <div class="invalid-feedback">
+          Please provide a province.
+        </div>
+      
+      } @else {
+        <div class="valid-feedback">
+          Looks Good!
+        </div>
+      } 
+
+
+      </div>
+
+
+
+
+
+
+      <div class="col-12 col-md-3">
+        <label for="selectCity">City</label>
+        <select id="selectCity" formControlName="city" class="form-control"
+        [class.is-valid]="applyCourseForm.controls['city'].status != 'INVALID'" 
+        [class.is-invalid]="applyCourseForm.controls['city'].dirty && applyCourseForm.hasError('required', 'city')" 
+        >
+          @if(retrieveCityFromProvinceLength > 0) {
+            <option value="" selected>*SELECT CITY</option>
+            @for (data of retrieveCityFromProvince; track data) 
+            {
+            <option [value]="data">{{data}}</option>            
+            }
+          }
+          @else {
+            <option value="" selected disabled>*SELECT CITY</option>
+          }
+        </select>
+
+        @if(applyCourseForm.controls['city'].dirty && applyCourseForm.hasError('required', 'city')) {
+                
+          <div class="invalid-feedback">
+          Please provide a city.
+        </div>
+      
+      } @else {
+        <div class="valid-feedback">
+          Looks Good!
+        </div>
+      }
+
+
+
+      </div>
+
+      <div class="col-12 col-md-3">
+        <label for="selectBarangay">Barangay</label>
+        <select id="selectBarangay" formControlName="barangay" class="form-control"
+        [class.is-valid]="applyCourseForm.controls['barangay'].status != 'INVALID'" 
+        [class.is-invalid]="applyCourseForm.controls['barangay'].dirty && applyCourseForm.hasError('required', 'barangay')">
+          @if(retrieveBarangayFromCityLength > 0) {
+            <option value="" selected>*SELECT BARANGAY</option>
+            @for (data of retrieveBarangayFromCity; track data) 
+            {
+            <option [value]="data">{{data}}</option>            
+            }
+          }
+          @else {
+            <option value="" selected disabled>*SELECT BARANGAY</option>
+          }
+        </select>
+
+        
+        @if(applyCourseForm.controls['barangay'].dirty && applyCourseForm.hasError('required', 'barangay')) {
+                
+          <div class="invalid-feedback">
+          Please provide a barangay.
+        </div>
+      
+      } @else {
+        <div class="valid-feedback">
+          Looks Good!
+        </div>
+      }
+
+
       </div>
     </div>
+
+
+
+
+
+
+
+
+    <div class="row" style="margin-bottom: 1rem">
+    
+      <div class="col-12 col-lg-3">
+        <label for="inputEmailAddress">Email Address</label>
+        <input
+          type="email"
+          class="form-control"
+          id="inputEmailAddress"
+          placeholder="test@pornhub.com"
+          formControlName="emailaddress"
+          [class.is-valid]="applyCourseForm.controls['emailaddress'].status != 'INVALID' && !applyCourseForm.hasError('email', 'emailaddress')" 
+          [class.is-invalid]="(applyCourseForm.controls['emailaddress'].dirty && applyCourseForm.hasError('required', 'emailaddress') ) || (applyCourseForm.controls['emailaddress'].dirty && applyCourseForm.hasError('email', 'emailaddress'))"
+        />
+
+        @if( (applyCourseForm.controls['emailaddress'].dirty && applyCourseForm.hasError('required', 'emailaddress') ) || (applyCourseForm.controls['emailaddress'].dirty && applyCourseForm.hasError('email', 'emailaddress') )  ) {
+                
+          <div class="invalid-feedback">
+          Please Provide a valid email
+        </div>
+      
+      } @else {
+        <div class="valid-feedback">
+          Looks Good!
+        </div>
+      }
+      </div>
+
+      <div class="col-12 col-lg-3">
+        <label for="inputFacebookAccount">Facebook Account</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputFacebookAccount"
+          placeholder="Jansen Talakag"
+          formControlName="facebookaccount"
+          [class.is-valid]="applyCourseForm.controls['facebookaccount'].status != 'INVALID'" 
+          [class.is-invalid]="applyCourseForm.controls['facebookaccount'].dirty && applyCourseForm.hasError('required', 'facebookaccount')" 
+        />
+        @if(applyCourseForm.controls['facebookaccount'].dirty && applyCourseForm.hasError('required', 'facebookaccount')) {
+                
+          <div class="invalid-feedback">
+          Please provide a facebook account.
+        </div>
+      
+      } @else {
+        <div class="valid-feedback">
+          Looks Good!
+        </div>
+      } 
+
+
+      </div>
+
+      
+      <div class="col-12 col-lg-3">
+        <label for="inputContactNo">Contact No</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputContactNo"
+          placeholder="09155254436"
+          formControlName="contactno"
+          maxlength="11"
+          [class.is-valid]="applyCourseForm.controls['contactno'].status != 'INVALID' && !applyCourseForm.hasError('pattern', 'contactno')" 
+          [class.is-invalid]="(applyCourseForm.controls['contactno'].dirty && applyCourseForm.hasError('required', 'contactno') ) || (applyCourseForm.controls['contactno'].dirty && applyCourseForm.hasError('pattern', 'contactno'))"
+
+        />
+        @if( (applyCourseForm.controls['contactno'].dirty && applyCourseForm.hasError('required', 'contactno') ) || (applyCourseForm.controls['contactno'].dirty && applyCourseForm.hasError('pattern', 'contactno') )  ) {
+                
+          <div class="invalid-feedback">
+          Please Provide a Philippine Valid Mobile No.
+          (09XXXXXXXXX)
+        </div>
+      
+      } @else {
+        <div class="valid-feedback">
+          Looks Good!
+        </div>
+      }
+
+
+      </div>
+
+
+      
+      <div class="col-12 col-lg-3">
+        <label for="inputNationality">Nationality</label>
+        <select id="inputNationality" formControlName="nationality" class="form-control"
+        [class.is-valid]="applyCourseForm.controls['nationality'].status != 'INVALID'" 
+        [class.is-invalid]="applyCourseForm.controls['nationality'].dirty && applyCourseForm.hasError('required', 'nationality')" 
+        >
+          <option value="" selected>*SELECT NATIONALITY</option>
+          @for (data of retrieveNationalitiesList; track data) 
+            {
+            <option [value]="data">{{data}}</option>            
+            }
+        </select>
+        @if(applyCourseForm.controls['nationality'].dirty && applyCourseForm.hasError('required', 'nationality')) {
+                
+          <div class="invalid-feedback">
+          Please provide a nationality.
+        </div>
+      
+      } @else {
+        <div class="valid-feedback">
+          Looks Good!
+        </div>
+      } 
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="row" style="margin-bottom: 1rem">
+      <div class="col-12 col-lg-1">
+        <label for="inputSex">Sex</label>
+        <select id="selectsex" formControlName="sex" class="form-control"
+        [class.is-valid]="applyCourseForm.controls['sex'].status != 'INVALID'" 
+        [class.is-invalid]="applyCourseForm.controls['sex'].dirty && applyCourseForm.hasError('required', 'sex')"
+        >
+        <option value="" selected>SEX</option>
+        <option value="Male" selected>M</option>
+        <option value="Female" selected>F</option>
+        </select>
+        @if(applyCourseForm.controls['sex'].dirty && applyCourseForm.hasError('required', 'sex')) {
+                
+          <div class="invalid-feedback">
+          Please provide.
+        </div>
+      
+      } @else {
+        <div class="valid-feedback">
+          Looks Good!
+        </div>
+      } 
+      </div>
+
+      <div class="col-12 col-lg-3">
+        <label for="inputCivilStatus">Civil Status</label>
+        <select id="selectcivilstatus" formControlName="civilstatus" class="form-control"
+        [class.is-valid]="applyCourseForm.controls['civilstatus'].status != 'INVALID'" 
+        [class.is-invalid]="applyCourseForm.controls['civilstatus'].dirty && applyCourseForm.hasError('required', 'civilstatus')"
+        >
+        <option value="" selected>*SELECT CIVIL STATUS</option>
+        <option value="Single">SINGLE</option>
+        <option value="Married">MARRIED</option>
+        <option value="Divorced">DIVORCED</option>
+        <option value="Widowed">WIDOWED</option>
+        </select>
+        @if(applyCourseForm.controls['civilstatus'].dirty && applyCourseForm.hasError('required', 'civilstatus')) {
+                
+          <div class="invalid-feedback">
+          Please provide a civil status.
+        </div>
+      
+      } @else {
+        <div class="valid-feedback">
+          Looks Good!
+        </div>
+      } 
+      </div>
+      <div class="col-12 col-lg-3">
+        <label for="inputCompany">Company</label>
+        <select id="selectcompany" formControlName="company" class="form-control"
+        [class.is-valid]="applyCourseForm.controls['company'].status != 'INVALID'" 
+        [class.is-invalid]="applyCourseForm.controls['company'].dirty && applyCourseForm.hasError('required', 'company')"
+        >
+        <option value="" selected>*SELECT COMPANY</option>
+          @for (data of retrieveCompaniesList; track data) {
+            <option [value]="data">{{data}}</option>
+          }
+      </select>
+      @if(applyCourseForm.controls['company'].dirty && applyCourseForm.hasError('required', 'company')) {
+                
+        <div class="invalid-feedback">
+        Please provide a company.
+      </div>
+    
+    } @else {
+      <div class="valid-feedback">
+        Looks Good!
+      </div>
+    }   
+    </div>
+      <div class="col-12 col-lg-3">
+        <label for="inputOccupation">Occupation</label>
+        <select id="selectoccupation" formControlName="occupation" class="form-control"
+        [class.is-valid]="applyCourseForm.controls['occupation'].status != 'INVALID'" 
+        [class.is-invalid]="applyCourseForm.controls['occupation'].dirty && applyCourseForm.hasError('required', 'occupation')"
+        >
+        <option value="" selected>*SELECT OCCUPATION</option>
+        @for(data of retrieveOccupationsList; track data) {
+          <option [value]="toSentenceCase(data)">{{toSentenceCase(data)}}</option>
+        }
+        </select>
+        @if(applyCourseForm.controls['occupation'].dirty && applyCourseForm.hasError('required', 'occupation')) {
+                
+          <div class="invalid-feedback">
+          Please provide a occupation.
+        </div>
+      
+      } @else {
+        <div class="valid-feedback">
+          Looks Good!
+        </div>
+      }   
+      
+      </div>      
+      <div class="col-12 col-lg-2">
+        <label for="inputBirthdate">Birthdate</label>
+        <input
+      type="date"
+      class="form-control"
+      id="inputBirthdate"
+      placeholder="mm/dd/yyyy"
+      formControlName="birthdate"
+      [class.is-valid]="applyCourseForm.controls['birthdate'].status != 'INVALID'" 
+      [class.is-invalid]="applyCourseForm.controls['birthdate'].dirty && applyCourseForm.hasError('required', 'birthdate')"
+    />
+
+    @if(applyCourseForm.controls['birthdate'].dirty && applyCourseForm.hasError('required', 'birthdate')) {
+                
+      <div class="invalid-feedback">
+      Please provide a birthdate.
+    </div>
+  
+  } @else {
+    <div class="valid-feedback">
+      Looks Good!
+    </div>
+  } 
+
+
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="row" style="margin-bottom: 1rem">
+     
+      <div class="col-12 col-md-3">
+        <label for="inputBirthPlaceRegion">Birtplace Region</label>
+        <select id="selectbirthplaceregion" formControlName="birthplaceregion" class="form-control"
+        [class.is-valid]="applyCourseForm.controls['birthplaceregion'].status != 'INVALID'" 
+        [class.is-invalid]="applyCourseForm.controls['birthplaceregion'].dirty && applyCourseForm.hasError('required', 'birthplaceregion')"
+        >
+          <option value="" selected>*SELECT REGION</option>
+          @for (data of retrieveBirthplacePhil_Prov_Mun_BarList; track data.region_name) 
+            {
+`            <option [value]="data.region_name">{{data.region_name}}</option>            
+            }
+        </select>
+        @if(applyCourseForm.controls['birthplaceregion'].dirty && applyCourseForm.hasError('required', 'birthplaceregion')) {
+                
+          <div class="invalid-feedback">
+          Please provide a region.
+        </div>
+      
+      } @else {
+        <div class="valid-feedback">
+          Looks Good!
+        </div>
+      } 
+      </div>
+      <div class="col-12 col-lg-3">
+        <label for="inputBirthPlaceProvince">Birthplace Province</label>
+        <select id="selectbirthplaceprovince" formControlName="birthplaceprovince" class="form-control"
+        [class.is-valid]="applyCourseForm.controls['birthplaceprovince'].status != 'INVALID'" 
+        [class.is-invalid]="applyCourseForm.controls['birthplaceprovince'].dirty && applyCourseForm.hasError('required', 'birthplaceprovince')"
+        >
+        
+        @if (retrieveBirthplaceProvinceFromRegionLength > 0) {
+          <option value="" selected>*SELECT PROVINCE</option>
+          @for (data of retrieveBirthplaceProvinceFromRegion; track data) {
+            <option [value]="data">{{data}}</option>
+          }
+        }
+        @else {
+          <option value="" selected>*SELECT PROVINCE</option>
+        }
+        </select>
+      
+        @if(applyCourseForm.controls['birthplaceprovince'].dirty && applyCourseForm.hasError('required', 'birthplaceprovince')) {
+                
+          <div class="invalid-feedback">
+          Please provide a province.
+        </div>
+      
+      } @else {
+        <div class="valid-feedback">
+          Looks Good!
+        </div>
+      }
+
+      </div>
+
+      <div class="col-12 col-lg-3">
+        <label for="inputBirthPlaceCity">Birthplace City</label>
+        <select id="selectbirthplacecity" formControlName="birthplacecity" class="form-control"
+        [class.is-valid]="applyCourseForm.controls['birthplacecity'].status != 'INVALID'" 
+        [class.is-invalid]="applyCourseForm.controls['birthplacecity'].dirty && applyCourseForm.hasError('required', 'birthplacecity')"  
+        >
+        
+          @if (retrieveBirthplaceCityFromProvinceLength > 0) {
+            <option value="" selected>*SELECT CITY</option>
+            @for (data of retrieveBirthplaceCityFromProvince; track data) 
+            {
+            <option [value]="data">{{data}}</option>            
+            }
+          }
+          @else {
+            <option value="" selected>*SELECT CITY</option>
+          }
+      </select>
+      
+      @if(applyCourseForm.controls['birthplacecity'].dirty && applyCourseForm.hasError('required', 'birthplacecity')) {
+                
+        <div class="invalid-feedback">
+        Please provide a city.
+      </div>
+    
+    } @else {
+      <div class="valid-feedback">
+        Looks Good!
+      </div>
+    }
+      </div>
+
+
+      <div class="col-12 col-lg-3">
+        <label for="inputBirthPlaceBarangay">Birthplace Barangay</label>
+        <select id="selectbirthplacebarangay" formControlName="birthplacebarangay" class="form-control"
+        [class.is-valid]="applyCourseForm.controls['birthplacebarangay'].status != 'INVALID'" 
+        [class.is-invalid]="applyCourseForm.controls['birthplacebarangay'].dirty && applyCourseForm.hasError('required', 'birthplacebarangay')"  
+        >
+        
+          @if (retrieveBirthplaceBarangayFromCityLength > 0) {
+            <option value="" selected>*SELECT BARANGAY</option>
+            @for (data of retrieveBirthplaceBarangayFromCity; track data) 
+            {
+            <option [value]="data">{{data}}</option>            
+            }
+          }
+          @else {
+            <option value="" selected>*SELECT BARANGAY</option>
+          }
+      </select>
+
+      
+      @if(applyCourseForm.controls['birthplacebarangay'].dirty && applyCourseForm.hasError('required', 'birthplacebarangay')) {
+                
+        <div class="invalid-feedback">
+        Please provide a barangay.
+      </div>
+    
+    } @else {
+      <div class="valid-feedback">
+        Looks Good!
+      </div>
+    }
+
+      </div>
+    
+    
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="row" style="margin-bottom: 1rem">
+      <div class="col-12 col-lg-3">
+        <label for="inputParentsGuardianLastName">Parent Last Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputParentsGuardianLastName"
+          placeholder="Bayandag"
+          formControlName="parentlastname"
+          [class.is-valid]="applyCourseForm.controls['parentlastname'].status != 'INVALID' && !applyCourseForm.hasError('pattern', 'parentlastname')" 
+          [class.is-invalid]="(applyCourseForm.controls['parentlastname'].dirty && applyCourseForm.hasError('required', 'parentlastname') ) || (applyCourseForm.controls['parentlastname'].dirty && applyCourseForm.hasError('pattern', 'parentlastname'))"
+        />
+
+        @if( (applyCourseForm.controls['parentlastname'].dirty && applyCourseForm.hasError('required', 'parentlastname') ) || (applyCourseForm.controls['parentlastname'].dirty && applyCourseForm.hasError('pattern', 'parentlastname') )  ) {
+                
+          <div class="invalid-feedback">
+          Please Provide a valid last name
+        </div>
+      
+      } @else {
+        <div class="valid-feedback">
+          Looks Good!
+        </div>
+      }
+
+
+      </div>
+      <div class="col-12 col-lg-3">
+        <label for="inputParentsGuardianFirstName">Parent First Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputParentsGuardianFirstName"
+          placeholder="Godofredo"
+          formControlName="parentfirstname"
+          [class.is-valid]="applyCourseForm.controls['parentfirstname'].status != 'INVALID' && !applyCourseForm.hasError('pattern', 'parentfirstname')" 
+          [class.is-invalid]="(applyCourseForm.controls['parentfirstname'].dirty && applyCourseForm.hasError('required', 'parentfirstname') ) || (applyCourseForm.controls['parentfirstname'].dirty && applyCourseForm.hasError('pattern', 'parentfirstname'))"
+ 
+        />
+        @if( (applyCourseForm.controls['parentfirstname'].dirty && applyCourseForm.hasError('required', 'parentfirstname') ) || (applyCourseForm.controls['parentfirstname'].dirty && applyCourseForm.hasError('pattern', 'parentfirstname') )  ) {
+                
+          <div class="invalid-feedback">
+          Please Provide a valid first name
+        </div>
+      
+      } @else {
+        <div class="valid-feedback">
+          Looks Good!
+        </div>
+      }
+
+      </div>
+      <div class="col-12 col-lg-3">
+        <label for="inputParentMiddleName">Parent Middle Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputParentMiddleName"
+          placeholder="Talakag"
+          formControlName="parentmiddlename"
+          [class.is-valid]="applyCourseForm.controls['parentmiddlename'].status != 'INVALID' && !applyCourseForm.hasError('pattern', 'parentmiddlename')" 
+          [class.is-invalid]="(applyCourseForm.controls['parentmiddlename'].dirty && applyCourseForm.hasError('required', 'parentmiddlename') ) || (applyCourseForm.controls['parentmiddlename'].dirty && applyCourseForm.hasError('pattern', 'parentmiddlename'))"
+     
+        />
+
+        @if( (applyCourseForm.controls['parentmiddlename'].dirty && applyCourseForm.hasError('required', 'parentmiddlename') ) || (applyCourseForm.controls['parentmiddlename'].dirty && applyCourseForm.hasError('pattern', 'parentmiddlename') )  ) {
+                
+          <div class="invalid-feedback">
+          Please Provide a valid middle name
+        </div>
+      
+      } @else {
+        <div class="valid-feedback">
+          Looks Good!
+        </div>
+      }
+      </div>
+
+
+      <div class="col-12 col-lg-2">
+        <label for="inputParentContactNo">Parent Contact No</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputParentContactNo"
+          placeholder="09188637416"
+          formControlName="parentcontactno"
+          maxlength="11"
+          [class.is-valid]="applyCourseForm.controls['parentcontactno'].status != 'INVALID' && !applyCourseForm.hasError('pattern', 'parentcontactno')" 
+          [class.is-invalid]="(applyCourseForm.controls['parentcontactno'].dirty && applyCourseForm.hasError('required', 'parentcontactno') ) || (applyCourseForm.controls['parentcontactno'].dirty && applyCourseForm.hasError('pattern', 'parentcontactno'))"
+   
+        />
+        @if( (applyCourseForm.controls['parentcontactno'].dirty && applyCourseForm.hasError('required', 'parentcontactno') ) || (applyCourseForm.controls['parentcontactno'].dirty && applyCourseForm.hasError('pattern', 'parentcontactno') )  ) {
+                
+          <div class="invalid-feedback">
+            Please Provide a Philippine Valid Mobile No.
+            (09XXXXXXXXX)
+        </div>
+      
+      } @else {
+        <div class="valid-feedback">
+          Looks Good!
+        </div>
+      }
+
+      </div>
+
+
+      <div class="col-12 col-lg-1">
+        <label for="inputParentsGuardianSuffixName">Suffix</label>
+        <select id="selectParentsGuardianSuffixName" formControlName="parentsuffixname" class="form-control">
+          <option selected value="">*</option>
+          @for (suffix of suffixnamesList; track suffix.name) {
+          <option [value]="suffix.name">{{suffix.name}}</option>            
+          }
+        </select>
+      </div>
+      
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="row" style="margin-bottom: 1rem">
+      <div class="col-12">
+        <label for="parentaddress">Parent Address (Number, Street, Purok, District)</label>
+        <input
+        type="text"
+          class="form-control"
+          id="parentaddress"
+          placeholder="Enter Full Address"
+          formControlName="parentaddress"
+        />
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    
+
+    <div class="row" style="margin-bottom: 1rem">
+
+      <div class="col-12 col-md-3">
+        <label for="selectParentRegion">Parent Region</label>
+        <select id="selectParentRegion" formControlName="parentregion" class="form-control"
+        [class.is-valid]="applyCourseForm.controls['parentregion'].status != 'INVALID'" 
+        [class.is-invalid]="applyCourseForm.controls['parentregion'].dirty && applyCourseForm.hasError('required', 'parentregion')"   
+        >
+          <option value="" selected>*SELECT REGION</option>
+          @for (data of retrieveParentGurdianPhil_Prov_Mun_BarList; track data.region_name) 
+            {
+            <option [value]="data.region_name">{{data.region_name}}</option>            
+            }
+        </select>
+
+        @if(applyCourseForm.controls['parentregion'].dirty && applyCourseForm.hasError('required', 'parentregion')) {
+                
+          <div class="invalid-feedback">
+          Please provide a region.
+        </div>
+      
+      } @else {
+        <div class="valid-feedback">
+          Looks Good!
+        </div>
+      } 
+
+
+      </div>
+
+      <div class="col-12 col-md-3">
+        <label for="selectParentProvince">Parent Province</label>
+        <select id="selectParentProvince" class="form-control" formControlName="parentprovince"
+        [class.is-valid]="applyCourseForm.controls['parentprovince'].status != 'INVALID'" 
+        [class.is-invalid]="applyCourseForm.controls['parentprovince'].dirty && applyCourseForm.hasError('required', 'parentprovince')"  
+        >
+          @if(retrieveParentGurdianProvinceFromRegionLength > 0) {
+            <option selected value="">*SELECT PROVINCE</option>
+            @for (data of retrieveParentGurdianProvinceFromRegion; track data) {
+              <option [value]="data">{{data}}</option>
+            }
+          }@else {
+            <option selected value="" disabled>*SELECT PROVINCE</option>
+          }
+          
+        </select>
+
+        @if(applyCourseForm.controls['parentprovince'].dirty && applyCourseForm.hasError('required', 'parentprovince')) {
+                
+          <div class="invalid-feedback">
+          Please provide a province.
+        </div>
+      
+      } @else {
+        <div class="valid-feedback">
+          Looks Good!
+        </div>
+      } 
+      </div>
+
+      <div class="col-12 col-md-3">
+        <label for="selectParentCity">Parent City</label>
+        <select id="selectParentCity" class="form-control" formControlName="parentcity"
+        [class.is-valid]="applyCourseForm.controls['parentcity'].status != 'INVALID'" 
+        [class.is-invalid]="applyCourseForm.controls['parentcity'].dirty && applyCourseForm.hasError('required', 'parentcity')"  
+        >
+          @if(retrieveParentGurdianCityFromProvinceLength > 0) {
+            <option value="" selected>*SELECT CITY</option>
+            @for (data of retrieveParentGurdianCityFromProvince; track data) 
+            {
+            <option [value]="data">{{data}}</option>            
+            }
+          }
+          @else {
+            <option value="" selected disabled>*SELECT CITY</option>
+          }
+        </select>
+        
+        @if(applyCourseForm.controls['parentcity'].dirty && applyCourseForm.hasError('required', 'parentcity')) {
+                
+          <div class="invalid-feedback">
+          Please provide a city.
+        </div>
+      
+      } @else {
+        <div class="valid-feedback">
+          Looks Good!
+        </div>
+      } 
+      </div>
+
+      <div class="col-12 col-md-3">
+        <label for="selectParentBarangay">Parent Barangay</label>
+        <select id="selectParentBarangay" class="form-control" formControlName="parentbarangay"
+        [class.is-valid]="applyCourseForm.controls['parentbarangay'].status != 'INVALID'" 
+        [class.is-invalid]="applyCourseForm.controls['parentbarangay'].dirty && applyCourseForm.hasError('required', 'parentbarangay')"  >
+          @if(retrieveParentGurdianBarangayFromCityLength > 0) {
+            <option value="" selected>*SELECT BARANGAY</option>
+            @for (data of retrieveParentGurdianBarangayFromCity; track data) 
+            {
+            <option [value]="data">{{data}}</option>            
+            }
+          }
+          @else {
+            <option value="" selected disabled>*SELECT BARANGAY</option>
+          }
+        </select>
+        @if(applyCourseForm.controls['parentbarangay'].dirty && applyCourseForm.hasError('required', 'parentbarangay')) {
+                
+          <div class="invalid-feedback">
+          Please provide a barangay.
+        </div>
+      
+      } @else {
+        <div class="valid-feedback">
+          Looks Good!
+        </div>
+      } 
+      </div>
+    
+    </div>
+
+
+
+
 
     <!-- Submit Button -->
     <div
@@ -127,9 +1174,11 @@
         type="submit"
         class="btn1"
         style="background: #0b3c99; max-width: 200px"
-      >
+        [disabled]="disabledSubmitButton">
         Submit
       </button>
     </div>
+
+
   </form>
 </section>
