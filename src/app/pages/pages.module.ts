@@ -6,6 +6,8 @@ import { CoursesComponent } from './courses/courses.component';
 import { FormComponent } from './form/form.component';
 import { PagesRoutingModule } from './pages-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UsercourselistComponent } from './usercourselist/usercourselist/usercourselist.component';
+import { NgxMapLibreGLModule } from '@maplibre/ngx-maplibre-gl';
 
 @NgModule({
   declarations: [
@@ -13,7 +15,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AboutComponent,
     CoursesComponent,
     FormComponent,
+    UsercourselistComponent,
   ],
-  imports: [CommonModule, PagesRoutingModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, PagesRoutingModule, FormsModule, ReactiveFormsModule, NgxMapLibreGLModule],
 })
 export class PagesModule {}

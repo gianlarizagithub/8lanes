@@ -102,10 +102,15 @@ get isLoggedIn(): boolean
   
 }
 
-setDisplayNameLocalStorage(role: any) 
+setDisplayNameLocalStorage(role: any, userLoggedInObject: any) 
 {
   if (isPlatformBrowser(this.platformId)) 
   localStorage.setItem('displayname', role)
+localStorage.setItem('userobject', JSON.stringify(userLoggedInObject))
+}
+getCurrentUserLoggedInObject() 
+{
+  return isPlatformBrowser(this.platformId) ? JSON.parse(localStorage.getItem('userobject') as any) : []
 }
 
    

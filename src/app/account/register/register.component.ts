@@ -69,7 +69,7 @@ export class RegisterComponent {
         next: async (res) => 
         {
           updateProfile(res.user, {displayName: 'customer'});
-          this.authService.setDisplayNameLocalStorage('customer');
+          this.authService.setDisplayNameLocalStorage('customer', res.user);
           var specificDataObject = 
           {
             email: this.f['email'].value,
