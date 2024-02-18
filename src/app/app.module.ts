@@ -15,6 +15,8 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthService } from './services/auth/auth.service';
+import { CreateService } from './services/create/create.service';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ),
     provideFirestore(() => getFirestore()),
   ],
-  providers: [provideClientHydration()],
+  providers: [provideClientHydration(), AuthService, CreateService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -5,6 +5,7 @@ import { AboutComponent } from './about/about.component';
 import { CoursesComponent } from './courses/courses.component';
 import { FormComponent } from './form/form.component';
 import { PagesRoutingModule } from './pages-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,6 @@ import { PagesRoutingModule } from './pages-routing.module';
     CoursesComponent,
     FormComponent,
   ],
-  imports: [CommonModule, PagesRoutingModule],
+  imports: [CommonModule, PagesRoutingModule, FormsModule, ReactiveFormsModule],
 })
 export class PagesModule {}
