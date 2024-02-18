@@ -1,0 +1,23 @@
+<div class="admin-wrapper">
+  <aside id="sidebar">
+    <app-sidebar></app-sidebar>
+  </aside>
+
+  <div class="main">
+    <app-topbar></app-topbar>
+    <main class="content px-3 py-2">
+      <div class="container-fluid">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+    <!-- <a href="" class="theme-toggle">
+      <i class="bi bi-brightness-high"></i>
+      <i class="bi bi-moon"></i>
+    </a> -->
+    <footer class="admin-footer">
+      <div class="container-fluid">
+        <app-admin-footer></app-admin-footer>
+      </div>
+    </footer>
+  </div>
+</div>

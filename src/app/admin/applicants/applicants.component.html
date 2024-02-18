@@ -1,0 +1,53 @@
+<div class="mb-3">
+  <h2 class="heading-style m-0 text-muted">Applications List</h2>
+</div>
+<div class="row">
+  <div class="col-12">
+    <div class="card shadow" style="border: none">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table
+            class="table table-hover table-centered align-middle table-nowrap mb-0"
+          >
+            <thead class="table-active">
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Course</th>
+                <th scope="col">Email</th>
+                <th scope="col">Registration Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of paginationDatas; let i = index">
+                <th scope="row">
+                  <a href="javascript:void(0);" class="fw-medium">{{
+                    item.id
+                  }}</a>
+                </th>
+                <td>{{ item.name }}</td>
+
+                <td>{{ item.course }}</td>
+
+                <td>
+                  {{ item.email }}
+                </td>
+                <td>
+                  {{ item.registrationDate }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="row mt-3 align-items-center" id="pagination-element">
+          <!-- <pagination
+                  [totalItems]=""
+                  [itemsPerPage]=""
+                  (pageChanged)=""
+                  [maxSize]=""
+                ></pagination> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

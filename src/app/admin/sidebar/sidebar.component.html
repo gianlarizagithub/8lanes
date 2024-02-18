@@ -1,0 +1,56 @@
+<!-- <aside>
+  <div class="d-flex justify-content-between">
+    <div class="sidebar-logo">
+      <a href="#">
+        <img src="/assets/images/logomo.png" alt="" />
+      </a>
+    </div>
+    <button id="toggle-btn" type="button">
+      <i class="bi bi-list" (click)="toggle()"></i>
+    </button>
+  </div>
+
+  <ul class="sidebar-nav">
+    <li class="sidebar-item">
+      <a href="#" class="sidebar-link">
+        <i class="bi bi-person-vcard"></i>
+        <span>Applicants</span>
+      </a>
+    </li>
+    <li class="sidebar-item">
+      <a href="#" class="sidebar-link">
+        <i class="bi bi-people-fill"></i>
+        <span>Users</span>
+      </a>
+    </li>
+  </ul>
+</aside> -->
+
+<div class="h-100">
+  <div class="sidebar-head d-flex align-items-center gap-2 p-3">
+    <div class="sidebar-logo p-0">
+      <a href="#">
+        <img src="/assets/images/logomo.png" alt="" />
+      </a>
+    </div>
+    <div style="color: white">
+      <h2 class="heading-style m-0" style="font-size: 1.5rem">8 Lanes</h2>
+      <span>Driving School</span>
+    </div>
+  </div>
+  <ul class="sidebar-nav">
+    <li class="sidebar-header"><span style="font-weight: 600">List</span></li>
+    <li class="sidebar-item" routerLinkActive="active">
+      <a [routerLink]="['applicants']" class="sidebar-link">
+        <i class="bi bi-person-vcard"></i>
+        <span>Applicants</span>
+      </a>
+    </li>
+    <li class="sidebar-item" routerLinkActive="active">
+      <a [routerLink]="['users']" class="sidebar-link">
+        <i class="bi bi-people-fill"></i>
+        <span>Users</span>
+      </a>
+    </li>
+  </ul>
+</div>
