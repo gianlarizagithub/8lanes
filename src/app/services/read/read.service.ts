@@ -13,10 +13,8 @@ export class ReadService {
 
   getAppliedCourseByUserID(userID: any)
   {
-    
     let $getDataQuery = collection(this.firestore,`Applied`);
     const q = query($getDataQuery, where('userid', '==', userID));
     return collectionData(q) as Observable<any[]>;
   }
-
 }

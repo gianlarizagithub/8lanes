@@ -17,14 +17,12 @@ const routes: Routes = [
     component: LayoutsComponent,
     loadChildren: () =>
       import('./pages/pages.module').then((m) => m.PagesModule),
-    // canActivate: [canactivateGuard]
   },
   {
     path: 'auth',
     component: AuthlayoutComponent,
     loadChildren: () =>
       import('./account/account.module').then((m) => m.AccountModule),
-    // canActivate: [canactivateloggedinGuard]
   },
   {
     path: 'admin',
