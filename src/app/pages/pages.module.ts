@@ -17,6 +17,12 @@ import { NgxMapLibreGLModule } from '@maplibre/ngx-maplibre-gl';
     FormComponent,
     UsercourselistComponent,
   ],
-  imports: [CommonModule, PagesRoutingModule, FormsModule, ReactiveFormsModule, NgxMapLibreGLModule],
+  imports: [
+    CommonModule,
+    PagesRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxMapLibreGLModule,
+  ],
 })
 export class PagesModule {}
