@@ -29,4 +29,9 @@ export class ReadService {
     let $getDataQuery = doc(this.firestore, `User/${userID}`);
     return docData($getDataQuery) as Observable<any>;
   }
+  getUsers() 
+  {
+    let $getDataQuery = collection(this.firestore, 'User');
+    return collectionData($getDataQuery, {idField: 'id'}) as Observable<any>;
+  }
 }
