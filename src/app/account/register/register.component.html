@@ -238,21 +238,23 @@
                         <span class="visually-hidden">Loading...</span>
                       </div>
                     </div>
-                  } @else {
+                  } 
+                  @if(!isProcessingRegistering) {
                     
                   <button class="account-btn w-100" type="submit">
                     Sign Up
                   </button>
                   }
                 </div>
-                
-                <div class="mt-4 pt-2 text-center">
-                  <p>
-                    Already Have an Account?
-                    <a routerLink="/auth/login">Log in</a>
-                  </p>
-                </div>
-              
+                @if(!isProcessingRegistering) {
+                  <div class="mt-4 pt-2 text-center">
+                    <p>
+                      Already Have an Account?
+                      <a routerLink="/auth/login">Log in</a>
+                    </p>
+                  </div>
+                }       
+                       
               </form>
             </div>
           </div>

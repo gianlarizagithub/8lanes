@@ -622,7 +622,8 @@
               <span class="visually-hidden">Loading...</span>
             </div>
           </div>
-        } @else {
+        } 
+        @if(!isUpdateProcessing) {
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         }
       </div>
@@ -637,7 +638,8 @@
               <span class="visually-hidden">Loading...</span>
             </div>
           </div>
-        } @else {
+        } 
+        @if(!isUpdateProcessing) {
           <button type="button" class="btn btn-primary" (click)="updateSpecificApplicationStatus()">Yes</button>
           <button type="button" class="btn btn-danger" (click)="closeWarningModal()">No</button>
         }

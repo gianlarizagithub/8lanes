@@ -154,7 +154,8 @@
                     <span class="visually-hidden">Loading...</span>
                   </div>
                 </div>
-              } @else {
+              } 
+              @if(!isProcessingLogIn) {
                 <button class="account-btn w-100" type="submit">Log In</button>
               }
             </div>
