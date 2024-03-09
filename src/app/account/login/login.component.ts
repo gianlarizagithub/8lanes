@@ -79,6 +79,7 @@ export class LoginComponent {
         },
         error: async (err) => 
         {
+          this.isProcessingLogIn = false;
           this.errorMessage = ''
           this.errorMessage = await err;
          // alert(await err)

@@ -291,6 +291,7 @@ onSubmit(successmodal: any)
         this.SuccessModal?.show();
         this.successMessage = ''
         this.successMessage = 'Applied Successfully!'
+        this.isProcessingSubmitApplication = false;
       })
       .catch((err) => {
         alert(JSON.stringify(err));
