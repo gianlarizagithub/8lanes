@@ -4,10 +4,83 @@ $CustomWhite: #fdfeff;
 $custom-margin-top-mobile: 7rem;
 $custom-margin-top-desktop: 18rem;
 
-:root {
-  --custom-white: #fdfeff;
-  --text-color: #051534;
-}
+$white: #fff;
+$gray-100: #f3f6f9;
+$gray-200: #eef0f7;
+$gray-300: #e9ebec;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #878a99;
+$gray-700: #2b313e;
+$gray-800: #1f242e;
+$gray-900: #0f1114;
+$black: #000;
+
+$white: #fff;
+// $black: #282936;
+
+$blue: #3762ea;
+$indigo: #1e1a22;
+$purple: #8561f9;
+$pink: #f7649f;
+$red: #ff0101;
+$orange: #f1963b;
+$yellow: #f6b749;
+$green: #2dcb73;
+$teal: #4ab0c1;
+$cyan: #438eff;
+
+$primary: $blue;
+$secondary: $indigo;
+$success: $green;
+$info: $teal;
+$warning: $yellow;
+$danger: $red;
+$light: $gray-200;
+$dark: $gray-900;
+
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "success": $success,
+  "info": $info,
+  "warning": $warning,
+  "danger": $danger,
+  "light": $light,
+  "dark": $dark,
+);
+
+$primary-text-emphasis: shade-color($primary, 10%);
+$secondary-text-emphasis: shade-color($secondary, 10%);
+$success-text-emphasis: shade-color($success, 10%);
+$info-text-emphasis: shade-color($info, 10%);
+$warning-text-emphasis: shade-color($warning, 10%);
+$danger-text-emphasis: shade-color($danger, 10%);
+$light-text-emphasis: $gray-500;
+$dark-text-emphasis: $gray-700;
+
+$primary-bg-subtle: tint-color($primary, 85%);
+$secondary-bg-subtle: tint-color($secondary, 85%);
+$success-bg-subtle: tint-color($success, 85%);
+$info-bg-subtle: tint-color($info, 85%);
+$warning-bg-subtle: tint-color($warning, 85%);
+$danger-bg-subtle: tint-color($danger, 85%);
+$light-bg-subtle: mix($gray-100, $white);
+$dark-bg-subtle: $gray-300;
+
+$primary-border-subtle: tint-color($primary, 60%);
+$secondary-border-subtle: tint-color($secondary, 60%);
+$success-border-subtle: tint-color($success, 60%);
+$info-border-subtle: tint-color($info, 60%);
+$warning-border-subtle: tint-color($warning, 60%);
+$danger-border-subtle: tint-color($danger, 60%);
+$light-border-subtle: $gray-300;
+$dark-border-subtle: $gray-500;
+
+// :root {
+//   --custom-white: #fdfeff;
+//   --text-color: #051534;
+// }
 
 .shadow {
   box-shadow: 0px 2px 3px rgba(3, 7, 18, 0.01),
@@ -15,17 +88,21 @@ $custom-margin-top-desktop: 18rem;
     0px 32px 44px rgba(3, 7, 18, 0.06);
 }
 
-@font-face {
-  font-family: "PrimaryFont";
-  src: url("./font/secondaryFont/Karla-Regular.ttf");
+h1 {
+  font-weight: bold;
 }
 
-@font-face {
-  font-family: "SecondaryFont";
-  src: url("./font/primaryFont/Rubik-Bold.ttf");
-}
+// @font-face {
+//   font-family: "PrimaryFont";
+//   src: url("./font/secondaryFont/Karla-Regular.ttf");
+// }
 
-@font-face {
-  font-family: "SecondaryFontMedium";
-  src: url("./font/primaryFont/Rubik-Medium.ttf");
-}
+// @font-face {
+//   font-family: "SecondaryFont";
+//   src: url("./font/primaryFont/Rubik-Bold.ttf");
+// }
+
+// @font-face {
+//   font-family: "SecondaryFontMedium";
+//   src: url("./font/primaryFont/Rubik-Medium.ttf");
+// }

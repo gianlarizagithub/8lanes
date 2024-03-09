@@ -1,5 +1,5 @@
 <div class="bg-image w-100 vh-100">
-  <div class="hero">
+  <!-- <div class="hero">
     <div class="container h-100 d-flex align-items-center" style="gap: 31px">
       <div
         class="secondNav d-none d-lg-flex w-100 justify-content-between"
@@ -93,18 +93,38 @@
           <h1 class="heading-style text-color-white">
             8 Lanes Driving School:
           </h1>
-          <p class="paragraph-style">
-            Drive Safe, Drive Confidently, Drive with Us!
-          </p>
-          <div class="buttons">
-            <button class="btn1">
+          <p class="paragraph-style">Drive Safe, Confidently, Drive with Us!</p>
+          <div class="d-flex gap-4">
+            <button class="btn btn-danger btn-md d-sm-block d-md-none">
               <a
                 routerLink="/form"
                 style="text-decoration: none; color: var(--custom-white)"
                 >Enroll Now</a
               >
             </button>
-            <button class="btn2">About Us</button>
+
+            <button class="d-none d-md-block btn btn-danger btn-lg">
+              <a
+                routerLink="/form"
+                style="text-decoration: none; color: var(--custom-white)"
+                >Enroll Now</a
+              >
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-link btn-md d-sm-block d-md-none"
+              style="text-decoration: none; color: #fdfeff"
+            >
+              About Us
+            </button>
+            <button
+              type="button"
+              class="d-none d-md-block btn btn-link btn-lg"
+              style="text-decoration: none; color: #fdfeff"
+            >
+              About Us
+            </button>
           </div>
         </div>
 
@@ -228,6 +248,81 @@
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="container hero" style="z-index: 2; display: flex; height: 100%">
+    <div class="hero-section row">
+      <div class="col-6 d-flex flex-column justify-content-center gap-3">
+        <div class="hero-title">
+          <h1 class="heading-style">8 Lanes Driving School:</h1>
+          <h3>Drive Safe, Confidently, Drive with Us!</h3>
+        </div>
+        <div class="hero-buttons d-flex gap-3">
+          <div id="container">
+            <button class="learn-more">
+              <span class="circle" aria-hidden="true">
+                <span class="icon arrow"></span>
+              </span>
+              <span class="button-text">Learn More</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 d-flex align-items-center">
+        <div class="carousel-container" style="overflow: hidden">
+          <div>
+            <div
+              id="carouselExampleFade"
+              class="carousel slide carousel-fade"
+              data-bs-ride="carousel"
+            >
+              <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="2000">
+                  <img
+                    src="/assets/images/landing-img2(727x419).jpg"
+                    class="d-block w-100"
+                    alt="Slide 1"
+                    style="object-fit: cover"
+                  />
+                </div>
+                <div class="carousel-item" data-bs-interval="2000">
+                  <img
+                    src="/assets/images/landing-img3(727x419).jpg"
+                    class="d-block w-100"
+                    alt="Slide 2"
+                    style="object-fit: cover"
+                  />
+                </div>
+              </div>
+              <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#carouselExampleFade"
+                data-bs-slide="prev"
+              >
+                <span
+                  class="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#carouselExampleFade"
+                data-bs-slide="next"
+              >
+                <span
+                  class="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

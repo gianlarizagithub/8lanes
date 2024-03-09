@@ -1,14 +1,22 @@
+// @import "/node_modules/bootstrap/scss/functions";
+// @import "/node_modules/bootstrap/scss/variables";
+
 @import "./variables";
-@import "./components/navbar.scss";
-@import "./components/homepage.scss";
-@import "./components/about.scss";
-@import "./components/course.scss";
-@import "./components/form.scss";
-@import "./components/login.scss";
-@import "./components/footer.scss";
+
+// components
+@import "./components/buttons";
+@import "./components/root";
+
+@import "./pages/navbar.scss";
+@import "./pages/homepage.scss";
+@import "./pages/about.scss";
+@import "./pages/course.scss";
+@import "./pages/form.scss";
+@import "./pages/login.scss";
+@import "./pages/footer.scss";
 
 // admin
 
-@import "./components/admin/admin-structure.scss";
-@import "./components/admin/sidebar.scss";
-@import "./components/admin/topbar.scss";
+@import "./pages/admin/admin-structure.scss";
+@import "./pages/admin/sidebar.scss";
+@import "./pages/admin/topbar.scss";
