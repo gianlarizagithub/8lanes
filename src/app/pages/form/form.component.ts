@@ -7,6 +7,8 @@ import { Transmission } from '../../models/transmission/transmission';
 import { Typeofvehicle } from '../../models/typeofvehicle/typeofvehicle';
 import { Restrictioncode } from '../../models/restrictioncode/restrictioncode';
 import { CreateService } from '../../services/create/create.service';
+import moment from 'moment';
+
 
 @Component({
   selector: 'app-form',
@@ -111,9 +113,9 @@ this.applyCourseForm  = this.formBuilder.group
   parentbarangay: ['', Validators.required],
   userid: [this.authService.getCurrentUserLoggedInObject().uid],
   status: ['Pending'],
-  dateapplied: [new Date()],
+  dateapplied: [''],
   paid: [false],
-  dateset: [new Date()]
+  schedulefordrivinglecture: [null]
 })
 }
 async retrievSuiffxNameLogic() 
@@ -266,9 +268,13 @@ onSubmit()
   if (this.applyCourseForm.valid) 
   {
     this.disabledSubmitButton = true;
-  
+    this.f['dateapplied'].setValue(moment(new Date()).format('MMMM DD YYYY HH:mm A'));
+    this.f['userid'].setValue(this.authService.getCurrentUserLoggedInObject().uid);
+    this.f['status'].setValue('Pending');
+    this.f['paid'].setValue(false);
+    this.f['schedulefordrivinglecture'].setValue(null);
     this.createService
-      .addNewAppliedCourse(this.applyCourseForm.value)
+      .addNewApplication(this.applyCourseForm.value)
       .then((el) => {
         alert('Applied Successfully!');
         this.applyCourseForm.reset();

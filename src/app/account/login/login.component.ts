@@ -63,7 +63,15 @@ export class LoginComponent {
         next: async (res) => 
         {
           this.authService.setDisplayNameLocalStorage(res.user.displayName, res.user);
-          this.router.navigate(['/form'])
+            if (res.user.displayName == 'customer') 
+            {
+              this.router.navigate(['/form'])
+            }
+            else 
+            {
+              this.router.navigate(['/admin/applicants'])
+            }
+          
         },
         error: async (err) => 
         {

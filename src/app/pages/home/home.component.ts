@@ -28,7 +28,6 @@ export class HomeComponent implements OnInit {
       .addTo(map); // Add the marker to the map
     map.addControl(new mapboxgl.NavigationControl());
   
-    map.addControl(new mapboxgl.Control());
     
   }
 }

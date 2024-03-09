@@ -1,1 +1,0 @@
-import{$ as a,Y as c,aa as n,b as i,d as s}from"./chunk-TJBLE56Y.js";var l=(()=>{let t=class t{constructor(r){this.firestore=r}addNewAppliedCourse(r){let e=n(this.firestore,"Applied");return a(e,r)}};t.\u0275fac=function(e){return new(e||t)(s(c))},t.\u0275prov=i({token:t,factory:t.\u0275fac,providedIn:"root"});let o=t;return o})();export{l as a};

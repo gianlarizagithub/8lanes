@@ -29,7 +29,8 @@ const routes: Routes = [
     component: AdminLayoutsComponent,
     loadChildren: () =>
       import('./admin/admin.module').then((m) => m.AdminModule),
-  },
+      canActivate: [canactivateGuard]
+    },
 ];
 
 @NgModule({

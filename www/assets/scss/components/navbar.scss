@@ -17,7 +17,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  margin-right: 10px; /* Adjust the spacing between the dot and text */
+  margin-right: 10px;
 }
 
 .circles.orange::before {
@@ -28,7 +28,7 @@
   transform: translateY(-50%);
   width: 100%;
   height: 100%;
-  background-color: orange; /* Adjust the color of the dot */
+  background-color: orange;
   border-radius: 50%;
 }
 
@@ -40,7 +40,7 @@
   transform: translateY(-50%);
   width: 100%;
   height: 100%;
-  background-color: red; /* Adjust the color of the dot */
+  background-color: red;
   border-radius: 50%;
 }
 

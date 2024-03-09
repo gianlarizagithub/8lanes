@@ -22,12 +22,10 @@ ngOnInit(): void {
 }
 retrieveMyCourse() 
 {
-  
-  this.readService.getAppliedCourseByUserID(this.currentLoggedInUserID).subscribe
+  this.readService.getApplicationByUserID(this.currentLoggedInUserID).subscribe
   ({
     next: async (res) => 
     {
-      console.log("the result", await res)
       this.mycourseList = await res;
     },
     error: async (err) => 
