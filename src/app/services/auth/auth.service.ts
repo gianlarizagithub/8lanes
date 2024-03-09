@@ -90,16 +90,17 @@ saveUserInfoAfterRegistering(specificData: any, uid: any)
   let $postDataQuery = doc(this.firestore, `User/${uid}`);
   return setDoc($postDataQuery, specificData);
 }
-
+get currentUserLoggedInRole(): string 
+{
+  return JSON.stringify(localStorage.getItem('displayname'));
+}
 
 get isLoggedIn(): boolean 
 {
   // if (isPlatformBrowser(this.platformId)) {
   //   return this.displayname !== null ? true : false
   // }
-
   return isPlatformBrowser(this.platformId) ? localStorage.getItem('displayname') != null ? true : false : false
-  
 }
 
 setDisplayNameLocalStorage(role: any, userLoggedInObject: any) 
@@ -209,6 +210,7 @@ SignOut()
 {
   signOut(this.auth)
   localStorage.removeItem('displayname');
+  localStorage.removeItem('userobject')
   this.router.navigate(['/auth/login'])
 }
 

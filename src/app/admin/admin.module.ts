@@ -7,9 +7,10 @@ import { AdminLayoutsComponent } from './admin-layouts/admin-layouts.component';
 import { TopbarComponent } from './topbar/topbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { AdminFooterComponent } from './admin-footer/admin-footer.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [ApplicantsComponent, UsersComponent, AdminLayoutsComponent, TopbarComponent, SidebarComponent, AdminFooterComponent],
-  imports: [CommonModule, AdminRoutingModule],
+  imports: [CommonModule, AdminRoutingModule, FormsModule, ReactiveFormsModule],
 })
 export class AdminModule {}

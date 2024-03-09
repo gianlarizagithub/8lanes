@@ -17,21 +17,20 @@ const routes: Routes = [
     component: LayoutsComponent,
     loadChildren: () =>
       import('./pages/pages.module').then((m) => m.PagesModule),
-    // canActivate: [canactivateGuard]
   },
   {
     path: 'auth',
     component: AuthlayoutComponent,
     loadChildren: () =>
       import('./account/account.module').then((m) => m.AccountModule),
-    // canActivate: [canactivateloggedinGuard]
   },
   {
     path: 'admin',
     component: AdminLayoutsComponent,
     loadChildren: () =>
       import('./admin/admin.module').then((m) => m.AdminModule),
-  },
+      canActivate: [canactivateGuard]
+    },
 ];
 
 @NgModule({

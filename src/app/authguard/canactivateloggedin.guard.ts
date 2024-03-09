@@ -14,6 +14,6 @@ Observable<boolean | UrlTree>
 | UrlTree => 
 {
   return !inject(AuthService).isLoggedIn 
-  ? true : inject(Router).createUrlTree(['/form']) 
+  ? true : inject(AuthService).currentUserLoggedInRole != null ? inject(AuthService).currentUserLoggedInRole == 'customer' ? inject(Router).createUrlTree(['/form']) : inject(Router).createUrlTree(['/admin']):  inject(Router).createUrlTree(['/auth/login'])
 
 }

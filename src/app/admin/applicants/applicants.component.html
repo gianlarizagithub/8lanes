@@ -1,6 +1,626 @@
+<div class="modal fade bd-example-modal-fullscreen" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" #testModal role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen">
+    
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <h5 class="modal-title fw-bolder" id="exampleModalLabel">{{f['accountemail'].value}}</h5>
+        <button type="button" class="btn btn-sm btn-danger" (click)="closeSpecificApplicantInformationModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <!-- <span class="fw-bolder">{{f['dateapplied'].value}}</span> -->
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <form [formGroup]="SpecificApplicantInformationForm">
+
+            
+          <div class="row">
+            <div class="col-sm-12">
+              <h2 class="modal-title fw-bolder" id="exampleModalLabel">Applied</h2>
+              <br />
+                <div class="row">
+               
+                  <div class="col-12 col-sm-12">
+                  
+                    <div class="form-floating">
+                    <input readonly type="text" class="form-control" formControlName="dateapplied" />
+                    <label for="floatingInputValue" class="fw-bolder">Date</label>
+                  </div>               
+                </div>             
+              </div>
+            </div>
+          </div>
+          <br />
+
+
+
+          <div class="row">
+            <div class="col-sm-12">
+              <h2 class="modal-title fw-bolder" id="exampleModalLabel">Course Information</h2>
+              <br />
+                <div class="row">
+                <div class="col-6 col-sm-6">
+                    <div class="form-floating">
+                    <input readonly type="text" class="form-control" formControlName="course">
+                    <label for="floatingInputValue" class="fw-bolder">Course</label>
+                  </div>
+                </div>
+                <div class="col-6 col-sm-6">
+
+
+                  
+                  <div class="form-floating">
+                    <input readonly type="text" class="form-control" formControlName="transmission">
+                    <label for="floatingInputValue" class="fw-bolder">Transmission</label>
+                  </div>
+
+
+                </div>
+              </div>
+              <br />
+                <div class="row">
+               
+                  <div class="col-6 col-sm-6">
+                  
+                    <div class="form-floating">
+                    <input readonly type="text" class="form-control" formControlName="typeofvehicle">
+                    <label for="floatingInputValue" class="fw-bolder">Type of Vehicle</label>
+                  </div>
+
+
+               
+                </div>
+               
+               
+               
+                <div class="col-6 col-sm-6">
+
+
+                  
+                  <div class="form-floating">
+                    <input readonly type="text" class="form-control" formControlName="restrictioncode">
+                    <label for="floatingInputValue" class="fw-bolder">Restriction Code</label>
+                  </div>
+
+
+                </div>
+              
+              
+              </div>
+            </div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-sm-12">
+              <h2 class="modal-title fw-bolder" id="exampleModalLabel">Applicant Information</h2>
+              <br />
+                <div class="row">
+               
+               
+                  <div class="col-6 col-sm-6">
+                  
+                    <div class="form-floating">
+                    <input readonly type="text" class="form-control" formControlName="applicantfirstname">
+                    <label for="floatingInputValue" class="fw-bolder">First Name</label>
+                  </div>
+
+
+               
+                </div>
+               
+               
+               
+                <div class="col-6 col-sm-6">
+
+
+                  
+                  <div class="form-floating">
+                    <input readonly type="text" class="form-control" formControlName="applicantlastname">
+                    <label for="floatingInputValue" class="fw-bolder">Last Name</label>
+                  </div>
+
+
+                </div>
+              
+              
+              
+              
+              
+              
+              
+              </div>
+              <br />
+              <div class="row">
+                <div class="col-6 col-sm-6">
+                  <div class="form-floating">
+                  <input readonly type="text" class="form-control" formControlName="applicantmiddlename">
+                  <label for="floatingInputValue" class="fw-bolder">Middle Name</label>
+                </div>         
+              </div>
+              <div class="col-6 col-sm-6">
+                <div class="form-floating">
+                  <input readonly type="text" class="form-control" formControlName="applicantsuffixname">
+                  <label for="floatingInputValue" class="fw-bolder">Suffix Name</label>
+                </div>
+              </div>
+              </div>
+              <br />
+              <div class="row">
+                  
+                <div class="col-6 col-sm-6">
+                  
+                  <div class="form-floating">
+                  <input readonly type="text" class="form-control" formControlName="applicantemailaddress">
+                  <label for="floatingInputValue" class="fw-bolder">Email Address</label>
+                </div>
+
+
+             
+              </div>
+             
+             
+             
+              <div class="col-6 col-sm-6">
+
+
+                
+                <div class="form-floating">
+                  <input readonly type="text" class="form-control" formControlName="applicantfacebookaccount">
+                  <label for="floatingInputValue" class="fw-bolder">Facebook Account</label>
+                </div>
+
+
+              </div>
+              
+              
+              </div>
+              <br />
+                <div class="row">
+               
+                   
+                  <div class="col-6 col-sm-6">
+                  
+                    <div class="form-floating">
+                    <input readonly type="text" class="form-control" formControlName="applicantcontactno">
+                    <label for="floatingInputValue" class="fw-bolder">Contact No</label>
+                  </div>
+
+
+               
+                </div>
+               
+               
+               
+                <div class="col-6 col-sm-6">
+
+
+                  
+                  <div class="form-floating">
+                    <input readonly type="text" class="form-control" formControlName="applicantnationality">
+                    <label for="floatingInputValue" class="fw-bolder">Nationality</label>
+                  </div>
+
+
+                </div>
+              
+              
+              </div>
+              <br />
+                <div class="row">
+               
+                   
+                  <div class="col-6 col-sm-6">
+                  
+                    <div class="form-floating">
+                    <input readonly type="text" class="form-control" formControlName="applicantgender">
+                    <label for="floatingInputValue" class="fw-bolder">Gender</label>
+                  </div>
+
+
+               
+                </div>
+               
+               
+               
+                <div class="col-6 col-sm-6">
+
+
+                  
+                  <div class="form-floating">
+                    <input readonly type="text" class="form-control" formControlName="applicantcivilstatus">
+                    <label for="floatingInputValue" class="fw-bolder">Civil Status</label>
+                  </div>
+
+
+                </div>
+              
+              
+              </div>
+              <br />
+                <div class="row">
+               
+                   
+                  <div class="col-6 col-sm-6">
+                  
+                    <div class="form-floating">
+                    <input readonly type="text" class="form-control" formControlName="applicantoccupation">
+                    <label for="floatingInputValue" class="fw-bolder">Occupation</label>
+                  </div>
+
+
+               
+                </div>
+               
+               
+               
+                <div class="col-6 col-sm-6">
+
+
+                  
+                  <div class="form-floating">
+                    <input readonly type="text" class="form-control" formControlName="applicantcompany">
+                    <label for="floatingInputValue" class="fw-bolder">Company</label>
+                  </div>
+
+
+                </div>
+              
+              
+              </div>
+              <br />
+                <div class="row">
+               
+                   
+               
+               
+               
+                <div class="col-8 col-sm-6">
+
+
+                  
+                  <div class="form-floating">
+                    <input readonly type="text" class="form-control" formControlName="applicantbirthplace">
+                    <label for="floatingInputValue" class="fw-bolder">Birth Place</label>
+                  </div>
+
+
+                </div>
+
+
+                
+               
+                <div class="col-4 col-sm-6">
+
+
+                  
+                  <div class="form-floating">
+                    <input readonly type="text" class="form-control" formControlName="applicantbirthdate">
+                    <label for="floatingInputValue" class="fw-bolder">Birth Date</label>
+                  </div>
+
+
+                </div>
+              
+              
+              </div>
+            </div>
+          </div>          
+          <br />
+          <div class="row">
+            <div class="col-sm-12">
+              <h2 class="modal-title fw-bolder" id="exampleModalLabel">Applicant Address</h2>
+              <br />     
+                <div class="row">
+                  <div class="col-12 col-sm-12">
+                  
+                    <div class="form-floating">
+                    <input readonly type="text" class="form-control" formControlName="applicanthomeaddress">
+                    <label for="floatingInputValue" class="fw-bolder">Home Address (Unit,No,Block,Purok,District)</label>
+                  </div>
+
+
+               
+                </div>
+              </div>
+              <br />
+              <div class="row">
+               
+               
+                <div class="col-6 col-sm-6">
+                  
+                  <div class="form-floating">
+                  <input readonly type="text" class="form-control" formControlName="applicanthomeregion">
+                  <label for="floatingInputValue" class="fw-bolder">Region</label>
+                </div>
+
+
+             
+              </div>
+             
+             
+             
+              <div class="col-6 col-sm-6">
+
+
+                
+                <div class="form-floating">
+                  <input readonly type="text" class="form-control" formControlName="applicanthomeprovince">
+                  <label for="floatingInputValue" class="fw-bolder">Province</label>
+                </div>
+
+
+              </div>
+              
+              
+              </div>
+              <br />
+              <div class="row">
+               
+               
+                <div class="col-6 col-sm-6">
+                  
+                  <div class="form-floating">
+                  <input readonly type="text" class="form-control" formControlName="applicanthomecity">
+                  <label for="floatingInputValue" class="fw-bolder">City</label>
+                </div>
+
+
+             
+              </div>
+             
+             
+             
+              <div class="col-6 col-sm-6">
+
+
+                
+                <div class="form-floating">
+                  <input readonly type="text" class="form-control" formControlName="applicanthomebarangay">
+                  <label for="floatingInputValue" class="fw-bolder">Barangay</label>
+                </div>
+
+
+              </div>
+              
+              
+              </div>
+            </div>
+          </div>
+          <br />
+          <div class="row">
+            
+            <div class="col-sm-12">
+              <h2 class="modal-title fw-bolder" id="exampleModalLabel">Applicant Parent Information</h2>
+              
+              
+              <br />
+              
+              
+                <div class="row">
+               
+               
+                  <div class="col-6 col-sm-6">
+                  
+                    <div class="form-floating">
+                    <input readonly type="text" class="form-control" formControlName="applicantparentfirstname">
+                    <label for="floatingInputValue" class="fw-bolder">First Name</label>
+                  </div>
+
+
+               
+                </div>
+               
+               
+               
+                <div class="col-6 col-sm-6">
+
+
+                  
+                  <div class="form-floating">
+                    <input readonly type="text" class="form-control" formControlName="applicantparentlastname">
+                    <label for="floatingInputValue" class="fw-bolder">Last Name</label>
+                  </div>
+
+
+                </div>
+              
+              
+              
+              
+              
+              
+              
+              </div>
+
+              <br />
+
+              <div class="row">
+               
+               
+                <div class="col-6 col-sm-6">
+                  
+                  <div class="form-floating">
+                  <input readonly type="text" class="form-control" formControlName="applicantparentmiddlename">
+                  <label for="floatingInputValue" class="fw-bolder">Middle Name</label>
+                </div>
+
+
+             
+              </div>
+             
+             
+             
+              <div class="col-6 col-sm-6">
+
+
+                
+                <div class="form-floating">
+                  <input readonly type="text" class="form-control" formControlName="applicantparentsuffixname">
+                  <label for="floatingInputValue" class="fw-bolder">Suffix Name</label>
+                </div>
+
+
+              </div>
+              
+              
+              </div>
+
+
+
+      
+
+
+
+              
+              <br />
+              
+              
+                <div class="row">
+               
+                   
+                  <div class="col-6 col-sm-6">
+                  
+                    <div class="form-floating">
+                    <input readonly type="text" class="form-control" formControlName="applicantparentcontactno">
+                    <label for="floatingInputValue" class="fw-bolder">Contact No</label>
+                  </div>
+
+
+               
+                </div>
+        
+              
+              
+              </div>
+
+
+              
+            
+            
+            
+            </div>
+          
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-sm-12">
+              <h2 class="modal-title fw-bolder" id="exampleModalLabel">Applicant Parent Address</h2>
+              <br />     
+                <div class="row">
+                  <div class="col-12 col-sm-12">
+                  
+                    <div class="form-floating">
+                    <input readonly type="text" class="form-control" formControlName="applicantparenthomeaddress">
+                    <label for="floatingInputValue" class="fw-bolder">Home Address (Unit,No,Block,Purok,District)</label>
+                  </div>
+
+
+               
+                </div>
+              </div>
+              <br />
+              <div class="row">
+               
+               
+                <div class="col-6 col-sm-6">
+                  
+                  <div class="form-floating">
+                  <input readonly type="text" class="form-control" formControlName="applicantparenthomeregion">
+                  <label for="floatingInputValue" class="fw-bolder">Region</label>
+                </div>
+
+
+             
+              </div>
+             
+             
+             
+              <div class="col-6 col-sm-6">
+
+
+                
+                <div class="form-floating">
+                  <input readonly type="text" class="form-control" formControlName="applicantparenthomeprovince">
+                  <label for="floatingInputValue" class="fw-bolder">Province</label>
+                </div>
+
+
+              </div>
+              
+              
+              </div>
+              <br />
+              <div class="row">
+               
+               
+                <div class="col-6 col-sm-6">
+                  
+                  <div class="form-floating">
+                  <input readonly type="text" class="form-control" formControlName="applicantparenthomecity">
+                  <label for="floatingInputValue" class="fw-bolder">City</label>
+                </div>
+
+
+             
+              </div>
+             
+             
+             
+              <div class="col-6 col-sm-6">
+
+
+                
+                <div class="form-floating">
+                  <input readonly type="text" class="form-control" formControlName="applicantparenthomebarangay">
+                  <label for="floatingInputValue" class="fw-bolder">Barangay</label>
+                </div>
+
+
+              </div>
+              
+              
+              </div>
+            </div>
+          </div>
+        </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        @if(specificStatus == 'Pending') {
+          <button type="button" class="btn btn-success" (click)="updateSpecificApplicationStatus('Approved')">Approve</button>
+          <button type="button" class="btn btn-danger" (click)="updateSpecificApplicationStatus('Rejected')">Reject</button>
+        }
+
+        @if(specificStatus == 'Approved') {
+          <button type="button" class="btn btn-success" disabled>Approved</button>
+        }
+
+        
+        @if(specificStatus == 'Rejected') {
+          <button type="button" class="btn btn-danger" disabled>Rejected</button>
+        }
+
+        
+        @if(specificStatus == 'Cancelled') {
+          <button type="button" class="btn btn-danger" disabled>Cancelled</button>
+        }
+       
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
 <div class="mb-3">
   <h2 class="heading-style m-0 text-muted">Applications List</h2>
 </div>
+
+
 <div class="row">
   <div class="col-12">
     <div class="card shadow" style="border: none">
@@ -11,31 +631,66 @@
           >
             <thead class="table-active">
               <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
+                <th scope="col">Date Applied</th>
+                <th scope="col">Account Email</th>
                 <th scope="col">Course</th>
+                <th scope="col">Transmission</th>
+                <th scope="col">Vehicle</th>
+                <th scope="col">Restrict Code</th>
                 <th scope="col">Email</th>
-                <th scope="col">Registration Date</th>
+                <th scope="col">Applicant Name</th>
+                <th scope="col">Status</th>
+                <th scope="col">Schedule</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of paginationDatas; let i = index">
+
+              @for (data of getApplications;  track data.id) 
+              {
+                
+              <tr style="cursor: pointer;" (click)="openSpecificApplicantInformationModal(testModal, data)">
                 <th scope="row">
                   <a href="javascript:void(0);" class="fw-medium">{{
-                    item.id
+                   data.dateapplied
                   }}</a>
                 </th>
-                <td>{{ item.name }}</td>
+                <td>{{data.borrowerfullname}}</td>
 
-                <td>{{ item.course }}</td>
+                <td>{{data.course}}</td>
 
                 <td>
-                  {{ item.email }}
+                  {{data.transmission}}
                 </td>
+                
                 <td>
-                  {{ item.registrationDate }}
+                  {{data.typeofvehicle}}
                 </td>
+                
+                <td>
+                  {{data.restrictioncode}}
+                </td>
+                
+                <td>
+                  {{data.emailaddress}}
+                </td>
+
+                <td>
+                  {{data.firstname}} {{data.middlename}} {{data.lastname}} {{data.suffixname}}
+                </td>
+
+                
+                <td>
+                  {{data.status}}
+                </td>
+
+                
+                <td>
+                  {{data.schedulefordrivinglecture == null ? 'N/A' : data.schedulefordrivinglecture}}
+                </td>
+
+
               </tr>
+              }
             </tbody>
           </table>
         </div>
