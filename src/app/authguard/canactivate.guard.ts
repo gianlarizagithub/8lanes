@@ -15,7 +15,7 @@ Observable<boolean | UrlTree>
 {
  
   return inject(AuthService).isLoggedIn 
-  ? true : inject(Router).createUrlTree(['/auth/login']) 
+  ? true : inject(Router).navigate(['/auth/login']) 
 
 
 

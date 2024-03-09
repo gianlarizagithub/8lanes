@@ -66,6 +66,10 @@ export class ApplicantsComponent implements OnInit {
   public SpecificApplicantModal: any;
   SpecificApplicantInformationForm!: FormGroup;
   public specificStatus: string = ''
+  public warningModal: any;
+  public warningMessage: string = ''
+  public statusValueForWarning: string = ''
+  public isUpdateProcessing: boolean = false;
   constructor
   (
   private readService: ReadService, 
@@ -152,7 +156,6 @@ export class ApplicantsComponent implements OnInit {
     this.SpecificApplicantModal?.hide()
   }
   save(data: any) {}
-
 ExecuteSpecificApplicantForm() 
 {
   this.SpecificApplicantInformationForm = this.formBuilder.group
@@ -202,27 +205,28 @@ ExecuteSpecificApplicantForm()
   {
     return this.SpecificApplicantInformationForm.controls;
   }
-  
-
-  updateSpecificApplicationStatus(statusValue: string) 
+  updateSpecificApplicationStatus() 
   {
+    this.isUpdateProcessing = true;
     var specificID = this.f['id'].value;
     var obj = 
     {
-      status: statusValue
+      status: this.statusValueForWarning
     }
     this.updateService.updateSpecificApplicationStatus(specificID, obj).then(() => 
     {
-      this.addNotificationForUsersWhenTheirApplicationStatusHasChanged(statusValue).then(() => 
+      this.addNotificationForUsersWhenTheirApplicationStatusHasChanged(this.statusValueForWarning).then(() => 
       {
-        this.specificStatus = statusValue;
+        this.specificStatus = this.statusValueForWarning;
+        this.closeWarningModal();
+        this.isUpdateProcessing = false;
       })
     }).catch((err) => 
     {
-
+      
+      alert(JSON.stringify(err))
     })
   }
-
   addNotificationForUsersWhenTheirApplicationStatusHasChanged(statusValue: string) 
   {
     var notificationObjectParameter = 
@@ -242,4 +246,18 @@ ExecuteSpecificApplicantForm()
     }
     return this.createService.addNotificationForUsersWhenTheirApplicationStatusHasChanged(this.f['userid'].value, notificationObjectParameter) 
   }
+openWarningModal(modal: any, statusvalue: string) 
+{
+  this.statusValueForWarning = ''
+  this.statusValueForWarning = statusvalue;
+  this.warningMessage = ''
+  this.warningMessage = statusvalue == 'Approved' ?  `Are you sure you want to approve this application?` : `Are you sure you want to reject this application?` 
+  this.warningModal = new bootstrap.Modal(modal, {})
+  this.warningModal?.show();
+}
+closeWarningModal() 
+{
+  this.warningModal?.hide();
+}
+
 }

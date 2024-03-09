@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Suffixname } from '../../models/suffixname/suffixname';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
@@ -8,7 +8,8 @@ import { Typeofvehicle } from '../../models/typeofvehicle/typeofvehicle';
 import { Restrictioncode } from '../../models/restrictioncode/restrictioncode';
 import { CreateService } from '../../services/create/create.service';
 import moment from 'moment';
-
+import { Router } from '@angular/router';
+import * as bootstrap from 'bootstrap';
 
 @Component({
   selector: 'app-form',
@@ -49,7 +50,10 @@ public retrieveParentGurdianBarangayFromCity!: any;
 public retrieveParentGurdianBarangayFromCityLength: number = 0;
 public disabledSubmitButton: boolean = false;
 public currentuserloggedinobject: any;
-constructor( private formBuilder: FormBuilder, private authService: AuthService, private createService: CreateService) 
+public isProcessingSubmitApplication: boolean = false;
+public successMessage: string = ''
+public SuccessModal: any
+constructor( private formBuilder: FormBuilder, private authService: AuthService, private createService: CreateService, private router: Router) 
 {
   this.applyCourseFormBuilder()
 }
@@ -58,6 +62,8 @@ get f() {
 }
   async ngOnInit()
   {  
+
+    this.validateRoleAccess();
     await this.retrievSuiffxNameLogic();
     await this.retrieveRegionProvinceCityBarangayLogic();
     await this.retrieveCourseLogic();
@@ -263,12 +269,17 @@ async retrieveCourseLogic()
   this.courseList = await this.retrieveCourse();
   this.courseList = this.courseList.sort((a, b) => {return  a.CourseName < b.CourseName ? -1 : 0});
 }
-onSubmit() 
+onSuccessResponse() {
+  this.isProcessingSubmitApplication = false;
+  this.applyCourseForm.reset();
+}
+onSubmit(successmodal: any) 
 {
   if (this.applyCourseForm.valid) 
   {
-    this.disabledSubmitButton = true;
-    this.f['dateapplied'].setValue(moment(new Date()).format('MMMM DD YYYY HH:mm A'));
+    this.isProcessingSubmitApplication = true;
+    
+    this.f['dateapplied'].setValue(moment(new Date()).format('MMMM DD YYYY hh:mm A'));
     this.f['userid'].setValue(this.authService.getCurrentUserLoggedInObject().uid);
     this.f['status'].setValue('Pending');
     this.f['paid'].setValue(false);
@@ -276,13 +287,14 @@ onSubmit()
     this.createService
       .addNewApplication(this.applyCourseForm.value)
       .then((el) => {
-        alert('Applied Successfully!');
-        this.applyCourseForm.reset();
-        this.disabledSubmitButton = false;
+        this.SuccessModal = new bootstrap.Modal(successmodal, {})
+        this.SuccessModal?.show();
+        this.successMessage = ''
+        this.successMessage = 'Applied Successfully!'
       })
       .catch((err) => {
         alert(JSON.stringify(err));
-        this.disabledSubmitButton = false;
+        this.isProcessingSubmitApplication = false;
       });
   } 
   else 
@@ -620,7 +632,6 @@ async retrieveParentGurdianRegionProvinceCityBarangayLogic()
     }
   })
 }
-
 validateAllFormFields(formGroup: FormGroup) {
   Object.keys(formGroup.controls).forEach((field) => {
     const control = formGroup.get(field);
@@ -631,6 +642,14 @@ validateAllFormFields(formGroup: FormGroup) {
     }
   });
 }
-
+validateRoleAccess() 
+{
+  const currentUserLoggedInRole = this.authService.currentUserLoggedInRole.replace('"', '').replace('"', '')
+  if (currentUserLoggedInRole != null || currentUserLoggedInRole == "" || currentUserLoggedInRole == undefined)
+  if (currentUserLoggedInRole == 'admin') 
+  {
+    this.router.navigate(['/admin'])
+  }
+}
 
 }

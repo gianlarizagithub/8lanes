@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID, inject } from '@angular/core';
 import { FirebaseError } from '@angular/fire/app';
 import { signInWithEmailAndPassword, Auth, createUserWithEmailAndPassword, signOut, sendPasswordResetEmail, updateProfile, authState, user  } from '@angular/fire/auth';
 import { collection, where, collectionData, doc, docData, addDoc, setDoc, updateDoc, deleteDoc, Firestore, query } from '@angular/fire/firestore';

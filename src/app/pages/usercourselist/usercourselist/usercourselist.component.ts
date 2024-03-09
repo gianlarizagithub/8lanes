@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth/auth.service';
 import { ReadService } from '../../../services/read/read.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-usercourselist',
@@ -10,7 +11,7 @@ import { ReadService } from '../../../services/read/read.service';
 export class UsercourselistComponent implements OnInit {
 public currentLoggedInUserID: any;
 public mycourseList: any;
-  constructor(private authService: AuthService, private readService: ReadService) 
+  constructor(private authService: AuthService, private readService: ReadService, private router: Router) 
   {
   this.currentLoggedInUserID =  this.authService.getCurrentUserLoggedInObject().uid
 
@@ -18,6 +19,7 @@ public mycourseList: any;
 
 
 ngOnInit(): void {
+this.validateRoleAccess();
   this.retrieveMyCourse();  
 }
 retrieveMyCourse() 
@@ -33,6 +35,16 @@ retrieveMyCourse()
 
     }
   })
+}
+
+validateRoleAccess() 
+{
+  const currentUserLoggedInRole = this.authService.currentUserLoggedInRole.replace('"', '').replace('"', '')
+  if (currentUserLoggedInRole != null || currentUserLoggedInRole == "" || currentUserLoggedInRole == undefined)
+  if (currentUserLoggedInRole == 'admin') 
+  {
+    this.router.navigate(['/admin'])
+  }
 }
 
 }

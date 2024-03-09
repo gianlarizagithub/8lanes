@@ -1,4 +1,20 @@
 
+
+<div class="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" #errormodal>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Error</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>{{errorMessage}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <div class="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" #forgotpasswordmodal>
   <div class="modal-dialog">
     <div class="modal-content">
@@ -23,6 +39,10 @@
 </div>
 
 
+
+
+
+
 <section class="w-100 h-100">
   <div class="wrapper container">
     <div class="container main">
@@ -42,7 +62,7 @@
           <form
             [formGroup]="loginForm"
             style="padding: 36px"
-            (ngSubmit)="onSubmit()"
+            (ngSubmit)="onSubmit(errormodal)"
             class="d-flex flex-column justify-content-center w-100"
           >
             <div class="mb-4">
@@ -116,7 +136,7 @@
 
               </div>
             </div>
-            <div class="form-check">
+            <!-- <div class="form-check">
               <input
                 class="form-check-input"
                 type="checkbox"
@@ -126,16 +146,27 @@
               <label class="form-check-label" for="auth-remember-check"
                 >Remember me</label
               >
-            </div>
+            </div> -->
             <div class="mt-4">
-              <button class="account-btn w-100" type="submit">Log In</button>
+              @if(isProcessingLogIn) {
+                <div class="d-flex justify-content-center">
+                  <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                </div>
+              } @else {
+                <button class="account-btn w-100" type="submit">Log In</button>
+              }
             </div>
+            @if (!isProcessingLogIn) {
+              
             <div class="mt-4 pt-2 text-center">
               <p>
                 Don't have an account ?
                 <a routerLink="/auth/register">Sign Up</a>
               </p>
             </div>
+            }
           </form>
         </div>
         <div class="right d-none d-lg-block col-lg-6 d-flex position-relative">
