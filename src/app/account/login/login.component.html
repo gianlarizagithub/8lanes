@@ -1,3 +1,28 @@
+
+<div class="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" #forgotpasswordmodal>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Enter your email</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input
+        type="text"
+        class="form-control password-input"
+        id="emailForResetPassword"
+        placeholder="Enter email"
+        [(ngModel)]="emailForResetPassword"
+      />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="sendEmailResetPassword()">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <section class="w-100 h-100">
   <div class="wrapper container">
     <div class="container main">
@@ -52,9 +77,10 @@
             <div class="">
               <div class="float-end">
                 <a
-                  routerLink="/auth/pass-reset"
+                  type="button"
                   style="text-decoration: none"
                   class="text-muted"
+                  (click)="openForgotPasswordModal(forgotpasswordmodal)"
                   >Forgot password?</a
                 >
               </div>
