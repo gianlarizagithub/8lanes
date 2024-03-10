@@ -1,4 +1,4 @@
-import { Component, HostBinding } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 import {
   animate,
   state,
@@ -6,6 +6,8 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
+import { ReadService } from '../../services/read/read.service';
+import { User } from '../../models/user/user';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -19,7 +21,7 @@ import {
     ]),
   ],
 })
-export class UsersComponent {
+export class UsersComponent implements OnInit {
   paginationDatas = [
     {
       id: '1',
@@ -57,4 +59,32 @@ export class UsersComponent {
       email: 'michaelbrown@example.com',
     },
   ];
+
+  public getUsers!: User[]
+  constructor(private readService: ReadService) {}
+
+
+  ngOnInit(): void 
+  {
+    this.getUserList();  
+  }
+
+  getUserList() 
+  {
+    this.readService.getUsers().subscribe
+    ({
+      next: async (res) => 
+      {
+        var usersList = await res;
+
+          usersList = usersList.filter((f: any) => f.email != '8lanesdrivingschool2020@gmail.com')
+          this.getUsers = usersList;
+      },
+      error: async (error) => 
+      {
+        alert(JSON.stringify(error));
+      }
+    })
+  }
+
 }

@@ -1,4 +1,44 @@
-<!-- <section class="w-100 h-100">
+<div
+  class="modal"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  #forgotpasswordmodal
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Enter your email</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <input
+          type="text"
+          class="form-control password-input"
+          id="emailForResetPassword"
+          placeholder="Enter email"
+          [(ngModel)]="emailForResetPassword"
+        />
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="sendEmailResetPassword()"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="w-100 h-100">
   <div class="wrapper container">
     <div class="container main">
       <div class="row" style="z-index: 2">
@@ -28,33 +68,41 @@
                 <input
                   type="text"
                   class="form-control password-input"
-                  [class.is-valid]="loginForm.controls['email'].status != 'INVALID'" 
-                  [class.is-invalid]="(loginForm.controls['email'].dirty && loginForm.hasError('required', 'email') ) || (loginForm.controls['email'].dirty && loginForm.hasError('email', 'email') )" 
+                  [class.is-valid]="
+                    loginForm.controls['email'].status != 'INVALID'
+                  "
+                  [class.is-invalid]="
+                    (loginForm.controls['email'].dirty &&
+                      loginForm.hasError('required', 'email')) ||
+                    (loginForm.controls['email'].dirty &&
+                      loginForm.hasError('email', 'email'))
+                  "
                   formControlName="email"
                   id="email"
                   placeholder="Enter email"
                 />
 
-                @if( (loginForm.controls['email'].dirty && loginForm.hasError('required', 'email') ) || (loginForm.controls['email'].dirty && loginForm.hasError('email', 'email') )  ) {
-                
-                  <div class="invalid-feedback">
+                @if( (loginForm.controls['email'].dirty &&
+                loginForm.hasError('required', 'email') ) ||
+                (loginForm.controls['email'].dirty &&
+                loginForm.hasError('email', 'email') ) ) {
+
+                <div class="invalid-feedback">
                   Please provide a valid email.
                 </div>
-              
-              } @else {
-                <div class="valid-feedback">
-                  Looks Good!
-                </div>
-              }
 
+                } @else {
+                <div class="valid-feedback">Looks Good!</div>
+                }
               </div>
             </div>
             <div class="">
               <div class="float-end">
                 <a
-                  routerLink="/auth/pass-reset"
+                  type="button"
                   style="text-decoration: none"
                   class="text-muted"
+                  (click)="openForgotPasswordModal(forgotpasswordmodal)"
                   >Forgot password?</a
                 >
               </div>
@@ -66,28 +114,29 @@
                   formControlName="password"
                   type="password"
                   class="form-control pe-5 password-input"
-                  [class.is-valid]="loginForm.controls['password'].status != 'INVALID'" 
-                  [class.is-invalid]="loginForm.controls['password'].dirty && loginForm.hasError('required', 'password')" 
+                  [class.is-valid]="
+                    loginForm.controls['password'].status != 'INVALID'
+                  "
+                  [class.is-invalid]="
+                    loginForm.controls['password'].dirty &&
+                    loginForm.hasError('required', 'password')
+                  "
                   placeholder="Enter password"
                   id="password-input"
                 />
-                @if(loginForm.controls['password'].dirty && loginForm.hasError('required', 'password')) {
-                
-                  <div class="invalid-feedback">
-                  Please provide a password.
-                </div>
-              
-              } @else {
-                <div class="valid-feedback">
-                  Looks Good!
-                </div>
-              }
+                @if(loginForm.controls['password'].dirty &&
+                loginForm.hasError('required', 'password')) {
+
+                <div class="invalid-feedback">Please provide a password.</div>
+
+                } @else {
+                <div class="valid-feedback">Looks Good!</div>
+                }
                 <button
                   class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
                   type="button"
                   id="password-addon"
                 ></button>
-
               </div>
             </div>
             <div class="form-check">
@@ -136,7 +185,8 @@
       </div>
     </div>
   </div>
-</section> -->
+</section>
+-->
 
 <section
   class="py-5 position-relative d-flex align-items-center justify-content-center min-vh-100"

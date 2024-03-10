@@ -11,31 +11,32 @@
           >
             <thead class="table-active">
               <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Address</th>
-                <th scope="col">Status</th>
                 <th scope="col">Email</th>
+                <th scope="col">Name</th>
+                <th scope="col">Phone No.</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of paginationDatas; let i = index">
-                <th scope="row">
-                  <a href="javascript:void(0);" class="fw-medium">{{
-                    item.id
-                  }}</a>
-                </th>
-                <td>{{ item.name }}</td>
+              @for (data of getUsers;  track data.id) {
+                <tr>
+                  <th scope="row">
+                    <a href="javascript:void(0);" class="fw-medium">{{
+                      data.email
+                    }}</a>
+                  </th>
+                  <td>{{ data.name }}</td>
+  
+                  <td>{{ data.phonenumber }}</td>
+<!--   
+                  <td [style.color]="item.status === 'active' ? 'blue' : 'red'">
+                    {{ item.status }}
+                  </td>
+                  <td>
+                    {{ item.email }}
+                  </td> -->
+                </tr> 
 
-                <td>{{ item.address }}</td>
-
-                <td [style.color]="item.status === 'active' ? 'blue' : 'red'">
-                  {{ item.status }}
-                </td>
-                <td>
-                  {{ item.email }}
-                </td>
-              </tr>
+              }
             </tbody>
           </table>
         </div>

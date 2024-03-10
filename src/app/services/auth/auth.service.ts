@@ -189,19 +189,9 @@ getCurrentUserLoggedInObject()
   }
 
   translateFirebaseErrorMessage({code, message}: FirebaseError) {
-    if (code === "auth/user-not-found") {
+    
+    if (code === "auth/invalid-credential") {
       return "User not found.";
-    }
-    if (code === "auth/wrong-password") {
-      return "User not found.";
-    }
-    if (code === "auth/missing-email")
-    {
-      return "Missing email"
-    }
-    if (code === "auth/missing-password")
-    {
-      return "Missing password"
     }
     return message;
   }

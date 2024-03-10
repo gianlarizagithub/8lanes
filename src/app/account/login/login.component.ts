@@ -9,7 +9,7 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
-
+import * as bootstrap from 'bootstrap';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -21,10 +21,10 @@ export class LoginComponent {
   fieldTextType!: boolean;
   error = '';
   returnUrl!: string;
-
   toast!: false;
   year: number = new Date().getFullYear();
-
+  emailForResetPassword: string = ''
+  public ForgotPasswordModal: any;
   constructor
   (
     private formBuilder: FormBuilder,
@@ -36,14 +36,12 @@ export class LoginComponent {
       // if (this.authService.displayname !== undefined) 
       // this.router.navigate(['/form'])
     }
-
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
     });
   }
-
   get f() {
     return this.loginForm.controls;
   }
@@ -75,7 +73,7 @@ export class LoginComponent {
         },
         error: async (err) => 
         {
-         await alert(JSON.stringify(err))
+          alert(await err)
         }
       })
     }
@@ -96,9 +94,30 @@ export class LoginComponent {
       }
     });
   }
-
-
   toggleFieldTextType() {
     this.fieldTextType = !this.fieldTextType;
+  }
+
+  openForgotPasswordModal(element: any) 
+  {
+    this.ForgotPasswordModal = new bootstrap.Modal(element, {})
+    this.ForgotPasswordModal?.show();
+
+  }
+  sendEmailResetPassword() 
+  {
+    this.authService.resetPassword(this.emailForResetPassword).subscribe
+    ({
+      
+      next: async (res) => 
+      {
+        console.log("success message", await res)
+      },
+      error: async (err) => 
+      {
+        alert("Please enter a valid email");
+      }
+
+    })
   }
 }
