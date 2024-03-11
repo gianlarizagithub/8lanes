@@ -1,20 +1,28 @@
-
 <ng-template #content let-modal>
-	<div class="modal-header">
-		<h4 class="modal-title">Modal title</h4>
-		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-	</div>
-	<div class="modal-body">
-		<p>One fine body&hellip;</p>
-	</div>
-	<div class="modal-footer">
-		<button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Close</button>
-	</div>
+  <div class="modal-header">
+    <h4 class="modal-title">Modal title</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <p>One fine body&hellip;</p>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-secondary"
+      (click)="modal.close('Close click')"
+    >
+      Close
+    </button>
+  </div>
 </ng-template>
 
-
-
-<nav
+<!-- <nav
   class="navbar navbar-expand-lg navbar-dark fixed-top"
   [ngClass]="{ transparent: !isScrolled, 'bg-blue': isScrolled }"
   style="z-index: 3"
@@ -96,14 +104,7 @@
         <ul class="navbar-nav mb-2 mb-lg-0 login">
           
           @if (!alreadyLoggedIn) {
-          <!-- <li class="nav-item">
-            <a
-              class="nav-link active"
-              routerLink="/auth/login"
-              style="color: yellow"
-              >LOG IN</a
-            >
-          </li> -->
+ 
           <li class="nav-item">
             <a class="nav-link active"  style="color: yellow" routerLink="/auth/register">REGISTER</a>
           </li>
@@ -114,6 +115,94 @@
         } 
         </ul>
       </div>
+    </div>
+  </div>
+</nav> -->
+
+<div class="wrap">
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col d-flex align-items-center gap-3">
+        <span class="fa fa-phone" style="color: #fff"></span>
+        <a href="#" style="text-decoration: none; color: white"
+          >0926 857 5375</a
+        >
+      </div>
+      <div class="col d-flex justify-content-end">
+        <div class="social-media">
+          <p class="mb-0 d-flex">
+            <a href="#" class="d-flex align-items-center justify-content-center"
+              ><span><i class="fa-brands fa-facebook"></i></span
+            ></a>
+            <a href="#" class="d-flex align-items-center justify-content-center"
+              ><span><i class="fa-brands fa-twitter"></i></span
+            ></a>
+            <a href="#" class="d-flex align-items-center justify-content-center"
+              ><span><i class="fa-brands fa-square-instagram"></i></span
+            ></a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<nav
+  class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
+  id="ftco-navbar"
+>
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img
+        src="/assets/images/logomo.png"
+        alt="Logo"
+        width="80"
+        height="auto"
+      />
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#ftco-nav"
+      aria-controls="ftco-nav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="fa fa-bars"></span> Menu
+    </button>
+
+    <div class="collapse navbar-collapse" id="ftco-nav">
+      <ul class="navbar-nav m-auto">
+        <li
+          class="nav-item active"
+          [routerLinkActive]="'active'"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a class="nav-link" routerLink="">Home</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="'active'">
+          <a class="nav-link" routerLink="/courses">
+            <!-- <div class="circles red"></div> -->
+            COURSES</a
+          >
+        </li>
+        <li class="nav-item" [routerLinkActive]="'active'">
+          <a href="#contacts" class="nav-link">Contacts</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav mb-2 mb-lg-0 login">
+        @if (!alreadyLoggedIn) {
+
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="/auth/register">REGISTER</a>
+        </li>
+        } @else {
+        <li class="nav-item">
+          <a class="nav-link" type="button" (click)="signout()">LOGOUT</a>
+        </li>
+        }
+      </ul>
     </div>
   </div>
 </nav>

@@ -258,12 +258,9 @@
             class="left col-12 col-lg-6 d-flex flex-column justify-content-center align-items-center"
             style="padding: 40px 10px"
           >
-            <h1
-              class="account-heading"
-              style="text-align: center; color: var(--text-color)"
-            >
+            <h2 style="text-align: center; color: var(--text-color)">
               REGISTER
-            </h1>
+            </h2>
             <div class="w-100 p-4">
               <form
                 [formGroup]="signupForm"
@@ -462,13 +459,15 @@
                 </div>
                 <div class="mt-4">
                   <button class="account-btn w-100" type="submit">
-                    Sign Up
+                    <span style="color: #fff">Sign Up</span>
                   </button>
                 </div>
                 <div class="mt-4 pt-2 text-center">
                   <p>
                     Already Have an Account?
-                    <a routerLink="/auth/login">Log in</a>
+                    <a routerLink="/auth/login"
+                      ><span style="font-weight: 700">Login</span></a
+                    >
                   </p>
                 </div>
               </form>
@@ -481,8 +480,8 @@
               class="d-flex h-100 flex-column justify-content-center"
               style="margin-left: 3rem; max-width: 428px"
             >
-              <h1 class="account-heading">Start your journey with us.</h1>
-              <p style="color: var(--custom-white)">
+              <h2 style="color: #fff">Start your journey with us.</h2>
+              <p style="color: #fff">
                 Our specialized programs will empower you to become a SAFE
                 driver for life.
               </p>
