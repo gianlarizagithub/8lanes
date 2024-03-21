@@ -10,6 +10,7 @@ import {
 import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
 import * as bootstrap from 'bootstrap';
+import { AnyLayer } from 'mapbox-gl';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -25,6 +26,9 @@ export class LoginComponent {
   year: number = new Date().getFullYear();
   emailForResetPassword: string = ''
   public ForgotPasswordModal: any;
+  public errorModal: any;
+  public errorMessage: string = ''
+  public isProcessingLogIn: boolean = false;
   constructor
   (
     private formBuilder: FormBuilder,
@@ -45,10 +49,11 @@ export class LoginComponent {
   get f() {
     return this.loginForm.controls;
   }
-  onSubmit() 
+  onSubmit(errorModal: any) 
   {
     if (this.loginForm.valid) 
     {
+      this.isProcessingLogIn = true;
       var params = 
       {
         email: this.f['email'].value,
@@ -69,11 +74,17 @@ export class LoginComponent {
             {
               this.router.navigate(['/admin/applicants'])
             }
+            this.isProcessingLogIn = false;
           
         },
         error: async (err) => 
         {
-          alert(await err)
+          this.isProcessingLogIn = false;
+          this.errorMessage = ''
+          this.errorMessage = await err;
+         // alert(await err)
+          this.errorModal = new bootstrap.Modal(errorModal, {})
+          this.errorModal?.show();
         }
       })
     }
@@ -111,7 +122,8 @@ export class LoginComponent {
       
       next: async (res) => 
       {
-        console.log("success message", await res)
+        this.ForgotPasswordModal?.hide();
+        alert("Please check your email inbox to reset your password!")
       },
       error: async (err) => 
       {

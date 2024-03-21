@@ -10,7 +10,7 @@ import {
 import { AuthService } from '../../services/auth/auth.service';
 import { updateProfile } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-
+import * as bootstrap from 'bootstrap';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -25,6 +25,9 @@ export class RegisterComponent {
 
   toast!: false;
   year: number = new Date().getFullYear();
+  public errorModal: any;
+  public errorMessage: string = ''
+  public isProcessingRegistering: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -54,12 +57,10 @@ export class RegisterComponent {
   get f() {
     return this.signupForm.controls;
   }
-  onSubmit() {
-    // console.log("password value", this.f['password'].value)
-
-    
+  onSubmit(errormodal: any) {
     if (this.signupForm.valid) 
     {
+      this.isProcessingRegistering = true;
       var params = {
         email: this.f['email'].value,
         password: this.f['password'].value,
@@ -68,6 +69,7 @@ export class RegisterComponent {
       ({
         next: async (res) => 
         {
+          this.isProcessingRegistering = false;
           updateProfile(res.user, {displayName: 'customer'});
           this.authService.setDisplayNameLocalStorage('customer', res.user);
           var specificDataObject = 
@@ -82,7 +84,12 @@ export class RegisterComponent {
         },
         error: async (err) => 
         {
-          console.log("ew", err)
+          this.isProcessingRegistering = false;
+          this.errorMessage = ''
+          this.errorMessage = await err;
+         // alert(await err)
+          this.errorModal = new bootstrap.Modal(errormodal, {})
+          this.errorModal?.show();
         }
       })
     
