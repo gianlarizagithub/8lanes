@@ -9,11 +9,11 @@
 }
 
 .footer-cta {
-  border-bottom: 1px solid var(--custom-white);
+  border-bottom: 1px solid #fff;
 }
 
 .single-cta i {
-  color: var(--custom-white);
+  color: #fff;
   font-size: 30px;
   float: left;
   margin-top: 8px;
@@ -24,15 +24,13 @@
   display: inline-block;
 }
 .cta-text h4 {
-  font-family: SecondaryFont;
-
-  color: var(--custom-white);
+  color: #fff;
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 2px;
 }
 .cta-text span {
-  color: var(--custom-white);
+  color: #fff;
   font-size: 15px;
 }
 .footer-content {
@@ -52,7 +50,7 @@
 .footer-text p {
   margin-bottom: 14px;
   font-size: 14px;
-  color: var(--custom-white);
+  color: $white;
   line-height: 28px;
 }
 
@@ -68,11 +66,11 @@
 .footer-social-icon svg {
   width: 32px;
   height: 32px;
-  color: var(--custom-white);
+  color: $white;
 }
 
 .footer-widget-heading h3 {
-  color: var(--custom-white);
+  color: $white;
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 40px;
@@ -100,7 +98,7 @@
 }
 
 .footer-widget ul li a {
-  color: var(--custom-white);
+  color: $white;
   text-transform: capitalize;
 }
 
@@ -134,11 +132,11 @@
 .copyright-text p {
   margin: 0;
   font-size: 14px;
-  color: var(--custom-white);
+  color: $white;
 }
 
 .copyright-text p a {
-  color: var(--custom-white);
+  color: $white;
 }
 
 .footer-menu li {
@@ -150,12 +148,12 @@
 }
 .footer-menu li a {
   font-size: 14px;
-  color: var(--custom-white);
+  color: $white;
 }
 
 ///////////////////
 .footer {
-  color: var(--custom-white);
+  color: $white;
   background: $PrimaryBlue;
 
   @media (max-width: 986px) {
@@ -164,7 +162,6 @@
 }
 
 .foot-head {
-  font-family: SecondaryFont;
   font-size: 15px;
   margin-bottom: 0;
 }
