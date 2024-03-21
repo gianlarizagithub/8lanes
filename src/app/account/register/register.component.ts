@@ -41,7 +41,7 @@ export class RegisterComponent {
     this.signupForm = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      number: ['', [Validators.required, Validators.pattern('(09)[0-9 ]{9}')]],
+      number: ['', [Validators.required, Validators.pattern('(09)[0-9]{9}')]],
       password: [
         '',
         [
@@ -79,7 +79,7 @@ export class RegisterComponent {
             phonenumber: this.f['number'].value
           }
           this.authService.saveUserInfoAfterRegistering(specificDataObject, res.user.uid)
-          this.router.navigate(['/form'])
+          this.router.navigate(['/'])
           
         },
         error: async (err) => 

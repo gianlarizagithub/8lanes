@@ -10,7 +10,6 @@ import {
 import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
 import * as bootstrap from 'bootstrap';
-import { AnyLayer } from 'mapbox-gl';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -49,7 +48,7 @@ export class LoginComponent {
   get f() {
     return this.loginForm.controls;
   }
-  onSubmit(errorModal: any) 
+  onSubmit(errormodal: any) 
   {
     if (this.loginForm.valid) 
     {
@@ -68,7 +67,7 @@ export class LoginComponent {
           this.authService.setDisplayNameLocalStorage(res.user.displayName, res.user);
             if (res.user.displayName == 'customer') 
             {
-              this.router.navigate(['/form'])
+              this.router.navigate(['/'])
             }
             else 
             {
@@ -83,7 +82,7 @@ export class LoginComponent {
           this.errorMessage = ''
           this.errorMessage = await err;
          // alert(await err)
-          this.errorModal = new bootstrap.Modal(errorModal, {})
+          this.errorModal = new bootstrap.Modal(errormodal, {})
           this.errorModal?.show();
         }
       })
@@ -124,10 +123,12 @@ export class LoginComponent {
       {
         this.ForgotPasswordModal?.hide();
         alert("Please check your email inbox to reset your password!")
+        this.emailForResetPassword = ''
       },
       error: async (err) => 
       {
-        alert("Please enter a valid email");
+        //console.log("the error", err)
+        alert(await err);
       }
 
     })

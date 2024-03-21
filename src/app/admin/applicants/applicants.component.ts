@@ -66,10 +66,12 @@ export class ApplicantsComponent implements OnInit {
   public SpecificApplicantModal: any;
   SpecificApplicantInformationForm!: FormGroup;
   public specificStatus: string = ''
-  public warningModal: any;
-  public warningMessage: string = ''
-  public statusValueForWarning: string = ''
-  public isUpdateProcessing: boolean = false;
+  public approveModal: any;
+  public rejectModal: any;
+  public rejectMessage: string = ''
+  public isApproveUpdateProcessing: boolean = false;
+  public isRejectUpdateProcessing: boolean = false;
+  public schedule: string = ''
   constructor
   (
   private readService: ReadService, 
@@ -107,7 +109,7 @@ export class ApplicantsComponent implements OnInit {
   }
   openSpecificApplicantInformationModal(element: any, data: Application) 
   {
-    this.specificStatus = data.status;
+    this.f['status'].setValue(data.status);
     this.f['userid'].setValue(data.userid);
     this.f['id'].setValue(data.id);
     this.f['course'].setValue(data.course)
@@ -155,7 +157,6 @@ export class ApplicantsComponent implements OnInit {
   {
     this.SpecificApplicantModal?.hide()
   }
-  save(data: any) {}
 ExecuteSpecificApplicantForm() 
 {
   this.SpecificApplicantInformationForm = this.formBuilder.group
@@ -198,36 +199,59 @@ ExecuteSpecificApplicantForm()
     applicationpaymentstatus: [Boolean],
     dateapplied: [''],
     accountemail: [''],
-    userid: ['']
+    userid: [''],
+    status: ['']
   })
 }
   get f() 
   {
     return this.SpecificApplicantInformationForm.controls;
   }
-  updateSpecificApplicationStatus() 
+  approveUpdateSpecificApplicationStatus() 
   {
-    this.isUpdateProcessing = true;
+    var schedule = moment(this.schedule).format('MM-DD-YYYY');
+    this.isApproveUpdateProcessing = true;
     var specificID = this.f['id'].value;
     var obj = 
     {
-      status: this.statusValueForWarning
+      status: 'Approved',
+      schedulefordrivinglecture: schedule
     }
     this.updateService.updateSpecificApplicationStatus(specificID, obj).then(() => 
     {
-      this.addNotificationForUsersWhenTheirApplicationStatusHasChanged(this.statusValueForWarning).then(() => 
+      this.addNotificationForUsersWhenTheirApplicationStatusHasChanged('Approved', schedule).then(() => 
       {
-        this.specificStatus = this.statusValueForWarning;
-        this.closeWarningModal();
-        this.isUpdateProcessing = false;
+        this.closeApproveModal();
+        this.isApproveUpdateProcessing = false;
+        this.SpecificApplicantModal?.hide();
       })
     }).catch((err) => 
     {
-      
       alert(JSON.stringify(err))
     })
   }
-  addNotificationForUsersWhenTheirApplicationStatusHasChanged(statusValue: string) 
+  rejectUpdateSpecificApplicationStatus() 
+  {
+    this.isRejectUpdateProcessing = true;
+    var specificID = this.f['id'].value;
+    var obj = 
+    {
+      status: 'Rejected'
+    }
+    this.updateService.updateSpecificApplicationStatus(specificID, obj).then(() => 
+    {
+      this.addNotificationForUsersWhenTheirApplicationStatusHasChanged('Rejected', '').then(() => 
+      {
+        this.closeRejectModal();
+        this.isRejectUpdateProcessing = false;
+        this.SpecificApplicantModal?.hide();
+      })
+    }).catch((err) => 
+    {
+      alert(JSON.stringify(err))
+    })
+  }
+  addNotificationForUsersWhenTheirApplicationStatusHasChanged(statusValue: string, schedule: string) 
   {
     var notificationObjectParameter = 
     {
@@ -242,22 +266,51 @@ ExecuteSpecificApplicantForm()
       suffixname: this.f['applicantsuffixname'].value,
       status: statusValue,
       isread: false,
-      date: moment(new Date()).format('MMMM DD YYYY HH:mm A')
+      date: moment(new Date()).format('MMMM DD YYYY HH:mm A'),
+      schedule: schedule
     }
     return this.createService.addNotificationForUsersWhenTheirApplicationStatusHasChanged(this.f['userid'].value, notificationObjectParameter) 
   }
-openWarningModal(modal: any, statusvalue: string) 
+openApproveModal(modal: any) 
 {
-  this.statusValueForWarning = ''
-  this.statusValueForWarning = statusvalue;
-  this.warningMessage = ''
-  this.warningMessage = statusvalue == 'Approved' ?  `Are you sure you want to approve this application?` : `Are you sure you want to reject this application?` 
-  this.warningModal = new bootstrap.Modal(modal, {})
-  this.warningModal?.show();
+  this.approveModal = new bootstrap.Modal(modal, {})
+  this.approveModal?.show();
 }
-closeWarningModal() 
+closeApproveModal() 
 {
-  this.warningModal?.hide();
+  this.approveModal?.hide();
 }
+
+openRejectModal(modal: any) 
+{
+
+  this.rejectMessage = ''
+  var applicantFullName = `${this.f['applicantfirstname'].value} ${this.f['applicantmiddlename'].value} ${this.f['applicantlastname'].value} ${this.f['applicantsuffixname'].value == null ? "" : this.f['applicantsuffixname'].value}`;
+  this.rejectMessage = `Are you sure you want to reject the application of ${applicantFullName} applied at the account of ${this.f['accountemail'].value}`
+
+  this.rejectModal = new bootstrap.Modal(modal, {})
+  this.rejectModal?.show();
+
+}
+
+closeRejectModal() 
+{
+  this.rejectModal?.hide();
+}
+
+validateBirthDateIfTheDateIsValid() 
+{
+  var applicantBirthDate = moment(this.schedule);
+  var dateToday = moment(new Date()).toDate();
+
+  if (applicantBirthDate.toDate() < dateToday) 
+  {
+    this.schedule = ""
+  }
+  
+}
+
+
+
 
 }

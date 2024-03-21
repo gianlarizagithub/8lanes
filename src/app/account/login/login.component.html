@@ -38,147 +38,47 @@
   </div>
 </div>
 
-<!-- <section class="w-100 h-100">
-  <div class="wrapper container">
-    <div class="container main">
-      <div class="row" style="z-index: 2">
-        <div
-          class="left col-lg-6 d-flex flex-column justify-content-center"
-          style="padding: 40px 40px 0 40px"
-        >
-          <div class="d-flex justify-content-center">
-            <h1
-              class="account-heading"
-              style="text-align: center; color: var(--text-color)"
-            >
-              LOGIN
-            </h1>
-          </div>
-          <form
-            [formGroup]="loginForm"
-            style="padding: 36px"
-            (ngSubmit)="onSubmit()"
-            class="d-flex flex-column justify-content-center w-100"
-          >
-            <div class="mb-4">
-              <label for="email" class="form-label"
-                >Email <span class="text-danger">*</span></label
-              >
-              <div class="position-relative">
-                <input
-                  type="text"
-                  class="form-control password-input"
-                  [class.is-valid]="loginForm.controls['email'].status != 'INVALID'" 
-                  [class.is-invalid]="(loginForm.controls['email'].dirty && loginForm.hasError('required', 'email') ) || (loginForm.controls['email'].dirty && loginForm.hasError('email', 'email') )" 
-                  formControlName="email"
-                  id="email"
-                  placeholder="Enter email"
-                />
 
-                @if( (loginForm.controls['email'].dirty && loginForm.hasError('required', 'email') ) || (loginForm.controls['email'].dirty && loginForm.hasError('email', 'email') )  ) {
-                
-                  <div class="invalid-feedback">
-                  Please provide a valid email.
-                </div>
-              
-              } @else {
-                <div class="valid-feedback">
-                  Looks Good!
-                </div>
-              }
-
-              </div>
-            </div>
-            <div class="">
-              <div class="float-end">
-                <a
-                  type="button"
-                  style="text-decoration: none"
-                  class="text-muted"
-                  (click)="openForgotPasswordModal(forgotpasswordmodal)"
-                  >Forgot password?</a
-                >
-              </div>
-              <label class="form-label" for="password-input"
-                >Password <span class="text-danger">*</span></label
-              >
-              <div class="position-relative auth-pass-inputgroup mb-4">
-                <input
-                  formControlName="password"
-                  type="password"
-                  class="form-control pe-5 password-input"
-                  [class.is-valid]="loginForm.controls['password'].status != 'INVALID'" 
-                  [class.is-invalid]="loginForm.controls['password'].dirty && loginForm.hasError('required', 'password')" 
-                  placeholder="Enter password"
-                  id="password-input"
-                />
-                @if(loginForm.controls['password'].dirty && loginForm.hasError('required', 'password')) {
-                
-                  <div class="invalid-feedback">
-                  Please provide a password.
-                </div>
-              
-              } @else {
-                <div class="valid-feedback">
-                  Looks Good!
-                </div>
-              }
-                <button
-                  class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
-                  type="button"
-                  id="password-addon"
-                ></button>
-
-              </div>
-            </div>
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="auth-remember-check"
-              />
-              <label class="form-check-label" for="auth-remember-check"
-                >Remember me</label
-              >
-            </div>
-            <div class="mt-4">
-              <button class="account-btn w-100" type="submit">Log In</button>
-            </div>
-            <div class="mt-4 pt-2 text-center">
-              <p>
-                Don't have an account ?
-                <a routerLink="/auth/register">Sign Up</a>
-              </p>
-            </div>
-          </form>
-        </div>
-        <div class="right d-none d-lg-block col-lg-6 d-flex position-relative">
-          <div
-            class="d-flex h-100 flex-column justify-content-center"
-            style="width: 428px; margin-left: 3rem"
-          >
-            <h1 class="account-heading">Start your journey with us.</h1>
-            <p style="color: var(--custom-white)">
-              Our specialized programs will empower you to become a SAFE driver
-              for life.
-            </p>
-          </div>
-          <div class="logo-account">
-            <img src="/assets/images/logo-for-bar.png" alt="" />
-          </div>
-          <div class="dots1">
-            <img src="/assets/images/dots1.png" alt="" />
-          </div>
-          <div class="dots2">
-            <img src="/assets/images/dots2.png" alt="" />
-          </div>
-        </div>
-      </div>
-    </div>
+<div
+  class="modal"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  #errormodal
+>
+<div class="modal-dialog">
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title">Error!</h5>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="modal"
+      aria-label="Close"
+    ></button>
   </div>
-</section> -->
-<section
+  <div class="modal-body">
+    {{errorMessage}}
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-bs-dismiss="modal"
+      aria-label="Close"
+    >
+      Close
+    </button>
+  </div>
+</div>
+</div>
+</div>
+
+
+
+
+
+<section  
   class="py-5 position-relative d-flex align-items-center justify-content-center min-vh-100"
 >
   <div class="container">
@@ -196,7 +96,7 @@
               <form
                 [formGroup]="loginForm"
                 style="padding: 36px"
-                (ngSubmit)="onSubmit()"
+                (ngSubmit)="onSubmit(errormodal)"
                 class="d-flex flex-column justify-content-center w-100"
               >
                 <div class="mb-4">
@@ -238,8 +138,8 @@
                 <div class="">
                   <div class="float-end">
                     <a
-                      routerLink="/auth/pass-reset"
-                      style="text-decoration: none"
+                      (click)="openForgotPasswordModal(forgotpasswordmodal)"
+                      style="text-decoration: none; cursor: pointer;"
                       class="text-muted"
                       >Forgot password?</a
                     >
@@ -272,14 +172,14 @@
                     } @else {
                     <div class="valid-feedback">Looks Good!</div>
                     }
-                    <button
+                    <!-- <button
                       class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
                       type="button"
                       id="password-addon"
-                    ></button>
+                    ></button> -->
                   </div>
                 </div>
-                <div class="form-check">
+                <!-- <div class="form-check">
                   <input
                     class="form-check-input"
                     type="checkbox"
@@ -289,11 +189,19 @@
                   <label class="form-check-label" for="auth-remember-check"
                     >Remember me</label
                   >
-                </div>
+                </div> -->
                 <div class="mt-4">
-                  <button class="account-btn w-100" type="submit">
-                    <span style="color: #fff">Log in</span>
-                  </button>
+                  
+                  @if (!isProcessingLogIn) {
+                    <button class="account-btn w-100" type="submit">
+                      <span style="color: #fff">Log in</span>
+                    </button>
+                  } @else {
+                    <button class="btn btn-primary w-100" type="button" disabled>
+                      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                      Loading...
+                    </button>
+                  }          
                 </div>
                 <div class="mt-4 pt-2 text-center">
                   <p>
@@ -315,7 +223,7 @@
             >
               <h2 style="color: #fff">Start your journey with us.</h2>
               <p style="color: #fff">
-                Our specialized programs will empower you to become a SAFE
+                Our specialized programs will empower you to become a QUALITY
                 driver for life.
               </p>
             </div>

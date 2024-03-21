@@ -442,6 +442,7 @@
         [class.is-invalid]="applyCourseForm.controls['barangay'].dirty && applyCourseForm.hasError('required', 'barangay')">
           @if(retrieveBarangayFromCityLength > 0) {
             <option value="" selected>*SELECT BARANGAY</option>
+            <option value="Others">Others</option>
             @for (data of retrieveBarangayFromCity; track data) 
             {
             <option [value]="data">{{data}}</option>            
@@ -655,6 +656,7 @@
         [class.is-invalid]="applyCourseForm.controls['company'].dirty && applyCourseForm.hasError('required', 'company')"
         >
         <option value="" selected>*SELECT COMPANY</option>
+        <option value="N/A">N/A</option>
           @for (data of retrieveCompaniesList; track data) {
             <option [value]="data">{{data}}</option>
           }
@@ -678,6 +680,7 @@
         [class.is-invalid]="applyCourseForm.controls['occupation'].dirty && applyCourseForm.hasError('required', 'occupation')"
         >
         <option value="" selected>*SELECT OCCUPATION</option>
+        <option value="N/A">N/A</option>
         @for(data of retrieveOccupationsList; track data) {
           <option [value]="toSentenceCase(data)">{{toSentenceCase(data)}}</option>
         }
@@ -703,9 +706,10 @@
       id="inputBirthdate"
       placeholder="mm/dd/yyyy"
       formControlName="birthdate"
-      [class.is-valid]="applyCourseForm.controls['birthdate'].status != 'INVALID'" 
-      [class.is-invalid]="applyCourseForm.controls['birthdate'].dirty && applyCourseForm.hasError('required', 'birthdate')"
-    />
+      [class.is-valid]="applyCourseForm.controls['birthdate'].status != 'INVALID' && applyCourseForm.controls['checkifBirthdateIsValid'].status != 'INVALID' && applyCourseForm.controls['checkifApplicantIsSixteenAbove'].status != 'INVALID'" 
+      [class.is-invalid]="( applyCourseForm.controls['birthdate'].dirty && applyCourseForm.hasError('required', 'birthdate') ) || ( applyCourseForm.controls['checkifBirthdateIsValid'].status == 'INVALID' ) || ( applyCourseForm.controls['checkifApplicantIsSixteenAbove'].status == 'INVALID' )"
+        (blur)="validateBirthDateIfTheDateIsValid()"
+      />
 
     @if(applyCourseForm.controls['birthdate'].dirty && applyCourseForm.hasError('required', 'birthdate')) {
                 
@@ -713,7 +717,16 @@
       Please provide a birthdate.
     </div>
   
-  } @else {
+  } @else if (applyCourseForm.controls['checkifBirthdateIsValid'].status == 'INVALID') {
+    <div class="invalid-feedback">
+      Invalid birthdate.
+    </div>
+  } @else if (applyCourseForm.controls['checkifApplicantIsSixteenAbove'].status == 'INVALID') {
+    <div class="invalid-feedback">
+      Applicant must be 16 years old above.
+    </div>
+  }
+  @else {
     <div class="valid-feedback">
       Looks Good!
     </div>
@@ -834,6 +847,7 @@
         
           @if (retrieveBirthplaceBarangayFromCityLength > 0) {
             <option value="" selected>*SELECT BARANGAY</option>
+            <option value="Others">Others</option>
             @for (data of retrieveBirthplaceBarangayFromCity; track data) 
             {
             <option [value]="data">{{data}}</option>            
@@ -1148,6 +1162,7 @@
         [class.is-invalid]="applyCourseForm.controls['parentbarangay'].dirty && applyCourseForm.hasError('required', 'parentbarangay')"  >
           @if(retrieveParentGurdianBarangayFromCityLength > 0) {
             <option value="" selected>*SELECT BARANGAY</option>
+            <option value="Others">Others</option>
             @for (data of retrieveParentGurdianBarangayFromCity; track data) 
             {
             <option [value]="data">{{data}}</option>            

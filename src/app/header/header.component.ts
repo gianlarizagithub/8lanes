@@ -11,7 +11,9 @@ export class HeaderComponent {
   isScrolled = false;
   isMenuClicked = false;
   alreadyLoggedIn: boolean = false;
+  currentUserObjectLoggedIn: any;
   currentUserLoggedInRole: string = '';
+  currentUserLoggedInEmail: string = '';
   @HostListener('window:scroll', [])
   onWindowScroll() {
     if (!this.isMenuClicked) {
@@ -20,14 +22,16 @@ export class HeaderComponent {
   }
   constructor(private authService: AuthService, @Inject(PLATFORM_ID) private platformId: Object) 
   {
-    if (isPlatformBrowser(this.platformId)) 
-    {
-    this.alreadyLoggedIn = localStorage.getItem('displayname') !== null ? true : false 
-      this.currentUserLoggedInRole = localStorage.getItem('displayname') !== null ? JSON.stringify(localStorage.getItem('displayname')).replace('"', '').replace('"', '') : ''
+    this.alreadyLoggedIn = this.authService.isLoggedIn;
+      
+      this.currentUserObjectLoggedIn = this.authService.getCurrentUserLoggedInObject()
+      if (this.currentUserObjectLoggedIn != null || this.currentUserObjectLoggedIn != undefined) 
+      {
+        this.currentUserLoggedInRole = this.currentUserObjectLoggedIn.displayName;
+        this.currentUserLoggedInEmail = this.currentUserObjectLoggedIn.email;
   
-      console.log("isloggedin", this.alreadyLoggedIn)
-      console.log("isloggedinrole", this.currentUserLoggedInRole)
-    }
+      }
+    
   }
 
   toggle() {

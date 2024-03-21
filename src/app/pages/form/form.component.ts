@@ -10,7 +10,6 @@ import { CreateService } from '../../services/create/create.service';
 import moment from 'moment';
 import { Router } from '@angular/router';
 import * as bootstrap from 'bootstrap';
-
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -96,7 +95,7 @@ this.applyCourseForm  = this.formBuilder.group
   barangay: ['', Validators.required],
   emailaddress: ['', [Validators.required, Validators.email]],
   facebookaccount: ['', Validators.required],
-  contactno: ['', [Validators.required, Validators.pattern('(09)[0-9 ]{9}')]],
+  contactno: ['', [Validators.required, Validators.pattern('(09)[0-9]{9}')]],
   nationality: ['', Validators.required],
   sex: ['', Validators.required],
   civilstatus: ['', Validators.required],
@@ -110,7 +109,7 @@ this.applyCourseForm  = this.formBuilder.group
   parentlastname: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
   parentfirstname: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
   parentmiddlename: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
-  parentcontactno: ['', [Validators.required, Validators.pattern('(09)[0-9 ]{9}')]],
+  parentcontactno: ['', [Validators.required, Validators.pattern('(09)[0-9]{9}')]],
   parentsuffixname: [''],
   parentaddress: [''],
   parentregion: ['', Validators.required],
@@ -121,7 +120,9 @@ this.applyCourseForm  = this.formBuilder.group
   status: ['Pending'],
   dateapplied: [''],
   paid: [false],
-  schedulefordrivinglecture: [null]
+  schedulefordrivinglecture: [null],
+  checkifBirthdateIsValid: [true, Validators.requiredTrue],
+  checkifApplicantIsSixteenAbove: [true, Validators.requiredTrue]
 })
 }
 async retrievSuiffxNameLogic() 
@@ -272,6 +273,7 @@ async retrieveCourseLogic()
 onSuccessResponse() {
   this.isProcessingSubmitApplication = false;
   this.applyCourseForm.reset();
+  window.location.reload()
 }
 onSubmit(successmodal: any) 
 {
@@ -650,6 +652,41 @@ validateRoleAccess()
   if (currentUserLoggedInRole == 'admin') 
   {
     this.router.navigate(['/admin'])
+  }
+}
+validateBirthDateIfTheDateIsValid() 
+{
+  var applicantBirthDate = moment(this.f['birthdate'].value);
+  var dateToday = moment(new Date()).toDate();
+
+  if (applicantBirthDate.toDate() > dateToday) 
+  {
+    this.f['checkifBirthdateIsValid'].setValue(false)
+  }
+  else 
+  {
+    this.f['checkifBirthdateIsValid'].setValue(true)
+    this.calculateTheAgeOfApplicantBasedonTheirBirthDate()
+  }
+  
+}
+calculateTheAgeOfApplicantBasedonTheirBirthDate() 
+{
+  var ApplicantBirthdateSplit = moment(this.f['birthdate'].value).format('MM-DD-YYYY').split('-')
+  var currentDateSplit = moment().startOf('day').format('MM-DD-YYYY').split('-')
+
+  var currentdate = moment([parseInt(currentDateSplit[2]), parseInt(currentDateSplit[0]), parseInt(currentDateSplit[1])]);
+  var birthDateOfApplicant = moment([parseInt(ApplicantBirthdateSplit[2]), parseInt(ApplicantBirthdateSplit[0]), parseInt(ApplicantBirthdateSplit[1])])
+
+  var years = currentdate.diff(birthDateOfApplicant, 'year')
+
+  if (years < 16) 
+  {
+      this.f['checkifApplicantIsSixteenAbove'].setValue(false);
+  }
+  else 
+  {
+    this.f['checkifApplicantIsSixteenAbove'].setValue(true);
   }
 }
 

@@ -25,24 +25,26 @@
 <div class="wrap">
   <div class="container">
     <div class="row justify-content-between">
-      <div class="col d-flex align-items-center gap-3">
-        <span class="fa fa-phone" style="color: #fff"></span>
-        <a href="#" style="text-decoration: none; color: white"
-          >0926 857 5375</a
-        >
-      </div>
+      @if(alreadyLoggedIn) {
+        <div class="col d-flex align-items-center gap-3">
+          <span class="fa fa-user" style="color: #fff"></span>
+          <a type="text" style="text-decoration: none; color: white"
+            >{{currentUserLoggedInEmail}}</a
+          >
+        </div>
+      }
+      
       <div class="col d-flex justify-content-end">
         <div class="social-media">
           <p class="mb-0 d-flex">
-            <a href="#" class="d-flex align-items-center justify-content-center"
-              ><span><i class="fa-brands fa-facebook"></i></span
-            ></a>
-            <a href="#" class="d-flex align-items-center justify-content-center"
-              ><span><i class="fa-brands fa-twitter"></i></span
-            ></a>
-            <a href="#" class="d-flex align-items-center justify-content-center"
-              ><span><i class="fa-brands fa-square-instagram"></i></span
-            ></a>
+
+            <!-- <a href="https://www.facebook.com/profile.php?id=100064226825016" target="_blank" class="d-flex align-items-center justify-content-center"
+              ><span><i class="fa-brands fa-facebook"></i></span>
+          </a> -->
+          <a type="button" class="d-flex align-items-center justify-content-center"
+          ><span><i class="bi bi-bell"></i></span><span class="badge badge-danger">3</span>
+      </a>
+          
           </p>
         </div>
       </div>
@@ -81,7 +83,7 @@
           [routerLinkActive]="'active'"
           [routerLinkActiveOptions]="{ exact: true }"
         >
-          <a class="nav-link" routerLink="">Home</a>
+          <a class="nav-link" routerLink="/">Home</a>
         </li>
         <li class="nav-item" [routerLinkActive]="'active'">
           <a class="nav-link" routerLink="/courses">
@@ -92,6 +94,16 @@
         <li class="nav-item" [routerLinkActive]="'active'">
           <a href="#contacts" class="nav-link">Contacts</a>
         </li>
+        @if(currentUserLoggedInRole == 'customer') {
+          <li class="nav-item" [routerLinkActive]="'active'">
+            <a routerLink="/mycourse" class="nav-link">My Applications</a>
+          </li>
+        }
+        @if (currentUserLoggedInRole == 'admin') {
+          <li class="nav-item" [routerLinkActive]="'active'">
+            <a routerLink="/admin" class="nav-link">Go to Admin</a>
+          </li>
+        } 
       </ul>
 
       <ul class="navbar-nav mb-2 mb-lg-0 login">
