@@ -1,5 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Router } from '@angular/router';
 import mapboxgl from 'mapbox-gl';
 
 @Component({
@@ -8,7 +9,7 @@ import mapboxgl from 'mapbox-gl';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private router: Router) {}
   repeat = false;
   noArrows = false;
   noBullets = false;
@@ -263,5 +264,10 @@ export class HomeComponent implements OnInit {
       .setLngLat([121.718241, 17.625362]) // Marker [lng, lat] coordinates
       .addTo(map); // Add the marker to the map
     map.addControl(new mapboxgl.NavigationControl());
+  }
+
+  gotoForm() 
+  {
+    this.router.navigate(['/form'])
   }
 }

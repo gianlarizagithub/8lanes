@@ -585,22 +585,22 @@
         </div>
       </div>
       <div class="modal-footer">
-        @if(specificStatus == 'Pending') {
-          <button type="button" class="btn btn-success" (click)="openWarningModal(errormodal, 'Approved')">Approve</button>
-          <button type="button" class="btn btn-danger" (click)="openWarningModal(errormodal, 'Rejected')">Reject</button>
+        @if(f['status'].value == 'Pending') {
+          <button type="button" class="btn btn-success" (click)="openApproveModal(approvemodal)">Approve</button>
+          <button type="button" class="btn btn-danger" (click)="openRejectModal(rejectwarningmodal)">Reject</button>
         }
 
-        @if(specificStatus == 'Approved') {
+        @if(f['status'].value == 'Approved') {
           <button type="button" class="btn btn-success" disabled>Approved</button>
         }
 
         
-        @if(specificStatus == 'Rejected') {
+        @if(f['status'].value == 'Rejected') {
           <button type="button" class="btn btn-danger" disabled>Rejected</button>
         }
 
         
-        @if(specificStatus == 'Cancelled') {
+        @if(f['status'].value == 'Cancelled') {
           <button type="button" class="btn btn-danger" disabled>Cancelled</button>
         }
        
@@ -610,43 +610,70 @@
   </div>
 </div>
 
-
-<div class="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" #errormodal>
+<div class="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" #approvemodal>
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Warning</h5>
-        @if(isUpdateProcessing) {
-          <div class="d-flex justify-content-center">
-            <div class="spinner-border" role="status">
-              <span class="visually-hidden">Loading...</span>
-            </div>
-          </div>
-        } 
-        @if(!isUpdateProcessing) {
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        }
+        <h5 class="modal-title">Approval</h5>
       </div>
       <div class="modal-body">
-        <p>{{this.warningMessage}}</p>
+        
+        <input
+      type="date"
+      class="form-control"
+      id="inputSchedule"
+      [(ngModel)]="schedule"
+      (blur)="validateBirthDateIfTheDateIsValid()"
+      />
       </div>
       <div class="modal-footer">
         
-        @if(isUpdateProcessing) {
+        @if(isApproveUpdateProcessing) {
           <div class="d-flex justify-content-center">
             <div class="spinner-border" role="status">
               <span class="visually-hidden">Loading...</span>
             </div>
           </div>
         } 
-        @if(!isUpdateProcessing) {
-          <button type="button" class="btn btn-primary" (click)="updateSpecificApplicationStatus()">Yes</button>
-          <button type="button" class="btn btn-danger" (click)="closeWarningModal()">No</button>
+        @if(!isApproveUpdateProcessing) {
+          @if(schedule != '') {
+            <button type="button" class="btn btn-primary" (click)="approveUpdateSpecificApplicationStatus()">Yes</button>
+          }
+          <button type="button" class="btn btn-danger" (click)="closeApproveModal()">Close</button>
         }
       </div>
     </div>
   </div>
 </div>
+
+<div class="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" #rejectwarningmodal>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Warning</h5>
+      </div>
+      <div class="modal-body">
+        <h5>{{rejectMessage}}</h5>
+      </div>
+      <div class="modal-footer">
+        
+        @if(isRejectUpdateProcessing) {
+          <div class="d-flex justify-content-center">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+        } 
+        @if(!isRejectUpdateProcessing) {
+            <button type="button" class="btn btn-primary" (click)="rejectUpdateSpecificApplicationStatus()">Yes</button>
+          
+          <button type="button" class="btn btn-danger" (click)="closeRejectModal()">Close</button>
+        }
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <div class="mb-3">
   <h2 class="heading-style m-0 text-muted">Applications List</h2>
@@ -682,7 +709,7 @@
               <tr style="cursor: pointer;" (click)="openSpecificApplicantInformationModal(testModal, data)">
                 <th scope="row">
                   <a href="javascript:void(0);" class="fw-medium">{{
-                   data.dateapplied
+                   dateAppliedConvertFormat(data)
                   }}</a>
                 </th>
                 <td>{{data.borrowerfullname}}</td>

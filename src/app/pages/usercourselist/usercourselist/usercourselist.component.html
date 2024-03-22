@@ -20,8 +20,10 @@
 
                 <li class="list-group-item d-flex justify-content-between align-items-start">
                     <div class="ms-2 me-auto">
-                      <div class="fw-bold">{{data.typeofvehicle}}</div>
-                      {{data.restrictioncode}}
+                      <div class="fw-bold">{{data.firstname}} {{data.middlename}} {{data.lastname}} {{data.suffixname != null ? data.suffixname : ""}} ({{data.course}})</div>
+                      {{data.typeofvehicle}} - {{data.transmission}} ({{data.restrictioncode}})
+                      <br />
+                      <small>Schedule: {{data.schedulefordrivinglecture != null ? ConvertLectureSchedule(data) : 'N/A'}}</small>
                     </div>
                     @if(data.status == "Pending") {
                         <span class="badge bg-primary rounded-pill">Pending</span>

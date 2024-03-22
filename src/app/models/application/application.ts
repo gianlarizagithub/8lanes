@@ -42,4 +42,6 @@ export interface Application {
   typeofvehicle: string;
   userid: string;
   borrowerfullname: string;
+  checkifApplicantIsSixteenAbove: Boolean;
+  checkIfBirthdateIsValid: Boolean;
 }

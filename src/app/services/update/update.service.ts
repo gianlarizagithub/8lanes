@@ -16,4 +16,10 @@ export class UpdateService {
     return updateDoc($updateDataQuery, specificData);    
   }
 
+  updateSpecificUserNotificationisRead(notificationID: string, userID: string, specificData: any) 
+  {
+    let $updateDataQuery = doc(this.firestore, `User/${userID}/Notifications/${notificationID}`);
+    return updateDoc($updateDataQuery, specificData);
+  }
+
 }
