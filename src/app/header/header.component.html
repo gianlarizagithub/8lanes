@@ -1,26 +1,37 @@
-<ng-template #content let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title">Modal title</h4>
-    <button
-      type="button"
-      class="btn-close"
-      aria-label="Close"
-      (click)="modal.dismiss('Cross click')"
-    ></button>
+
+<div class="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" #notificationsmodal>
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Notifications</h5>
+      </div>
+      
+      <div class="modal-body">
+        
+        <div class="list-group">  
+        
+          @for (data of currentUserLoggedInNotificationsList; track data.id) {
+
+              <a type="button" class="list-group-item list-group-item-action active" aria-current="true" (click)="specificNotificationMarkasRead(data)">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">{{data.firstname}} {{data.middlename}} {{data.lastname}} {{data.suffixname}}</h5>
+                  <small>{{getSpecificNotificationDateFromNow(data.date)}}</small>
+                </div>
+                <p class="mb-1">{{data.course}} course ({{data.typeofvehicle}} - {{data.transmission}}) with a restrictioncode of {{data.restrictioncode}} has been {{data.status.toLocaleLowerCase()}}. 
+                  Applied at {{data.applicationdateapplied}}</p>
+                <small>Schedule : {{data.schedule != '' ? data.schedule : 'N/A'}}</small>
+              </a>
+          }
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="closeUserNotificationsListModal()">Close</button>
+      </div>
+    
+    </div>
   </div>
-  <div class="modal-body">
-    <p>One fine body&hellip;</p>
-  </div>
-  <div class="modal-footer">
-    <button
-      type="button"
-      class="btn btn-secondary"
-      (click)="modal.close('Close click')"
-    >
-      Close
-    </button>
-  </div>
-</ng-template>
+</div>
 
 <div class="wrap">
   <div class="container">
@@ -32,22 +43,26 @@
             >{{currentUserLoggedInEmail}}</a
           >
         </div>
-      }
-      
       <div class="col d-flex justify-content-end">
         <div class="social-media">
           <p class="mb-0 d-flex">
-
             <!-- <a href="https://www.facebook.com/profile.php?id=100064226825016" target="_blank" class="d-flex align-items-center justify-content-center"
               ><span><i class="fa-brands fa-facebook"></i></span>
           </a> -->
-          <a type="button" class="d-flex align-items-center justify-content-center"
-          ><span><i class="bi bi-bell"></i></span><span class="badge badge-danger">3</span>
-      </a>
+          
+          @if(currentUserLoggedInRole != 'admin') {
+            <a type="button" class="d-flex align-items-center justify-content-center"
+          (click)="openUserNotificationsListModal(notificationsmodal)"><span><i class="bi bi-bell"></i></span>
+          @if(this.currentUserNotificationsNotYetRead > 0) {
+            <span class="badge badge-danger">{{this.currentUserNotificationsNotYetRead}}</span>
+          }    
+        </a>
+          }
           
           </p>
         </div>
       </div>
+    }
     </div>
   </div>
 </div>

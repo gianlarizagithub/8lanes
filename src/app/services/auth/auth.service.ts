@@ -22,16 +22,13 @@ public currentUserID: string = "";
     private router: Router,
     @Inject(PLATFORM_ID) private platformId: Object
   ) 
-
   { 
-    
     if (isPlatformBrowser(this.platformId)) 
     {
       this.displayname = localStorage.getItem('displayname')
     }
     authState(this.auth).subscribe((data) => 
     {
-      
       if (data && data.uid) 
       {
         this.currentUserID = data.uid;
@@ -92,7 +89,7 @@ saveUserInfoAfterRegistering(specificData: any, uid: any)
 }
 get currentUserLoggedInRole(): string 
 {
-  return JSON.stringify(localStorage.getItem('displayname'));
+  return isPlatformBrowser(this.platformId) ?  JSON.stringify(localStorage.getItem('displayname')).replace('"', '').replace('"', '') : "";
 }
 
 get isLoggedIn(): boolean 

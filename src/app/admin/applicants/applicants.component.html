@@ -610,9 +610,6 @@
   </div>
 </div>
 
-
-
-
 <div class="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" #approvemodal>
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -648,8 +645,6 @@
     </div>
   </div>
 </div>
-
-
 
 <div class="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" #rejectwarningmodal>
   <div class="modal-dialog modal-dialog-centered">
@@ -714,7 +709,7 @@
               <tr style="cursor: pointer;" (click)="openSpecificApplicantInformationModal(testModal, data)">
                 <th scope="row">
                   <a href="javascript:void(0);" class="fw-medium">{{
-                   data.dateapplied
+                   dateAppliedConvertFormat(data)
                   }}</a>
                 </th>
                 <td>{{data.borrowerfullname}}</td>

@@ -281,7 +281,7 @@ onSubmit(successmodal: any)
   {
     this.isProcessingSubmitApplication = true;
     
-    this.f['dateapplied'].setValue(moment(new Date()).format('MMMM DD YYYY hh:mm A'));
+    this.f['dateapplied'].setValue(moment(new Date()).format('MM-DD-YYYY HH:mm'));
     this.f['userid'].setValue(this.authService.getCurrentUserLoggedInObject().uid);
     this.f['status'].setValue('Pending');
     this.f['paid'].setValue(false);
@@ -675,8 +675,8 @@ calculateTheAgeOfApplicantBasedonTheirBirthDate()
   var ApplicantBirthdateSplit = moment(this.f['birthdate'].value).format('MM-DD-YYYY').split('-')
   var currentDateSplit = moment().startOf('day').format('MM-DD-YYYY').split('-')
 
-  var currentdate = moment([parseInt(currentDateSplit[2]), parseInt(currentDateSplit[0]), parseInt(currentDateSplit[1])]);
-  var birthDateOfApplicant = moment([parseInt(ApplicantBirthdateSplit[2]), parseInt(ApplicantBirthdateSplit[0]), parseInt(ApplicantBirthdateSplit[1])])
+  var currentdate = moment([parseInt(currentDateSplit[2]), parseInt(currentDateSplit[0]) - 1, parseInt(currentDateSplit[1])]);
+  var birthDateOfApplicant = moment([parseInt(ApplicantBirthdateSplit[2]), parseInt(ApplicantBirthdateSplit[0]) - 1, parseInt(ApplicantBirthdateSplit[1])])
 
   var years = currentdate.diff(birthDateOfApplicant, 'year')
 

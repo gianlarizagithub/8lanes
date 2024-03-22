@@ -91,7 +91,9 @@ export class ApplicantsComponent implements OnInit {
       next: async (res) =>
        {
         this.getApplications = res
-       
+        
+          this.getApplications.sort((a,b) => {return moment(b.dateapplied).toDate().getTime() - moment(a.dateapplied).toDate().getTime()})
+
         this.getApplications.map((i, index) => 
         {
           this.readService.getUserByID(i.userid)
@@ -147,7 +149,7 @@ export class ApplicantsComponent implements OnInit {
     this.f['applicantparenthomebarangay'].setValue(data.parentbarangay)
     this.f['applicationstatus'].setValue(data.status)
     this.f['applicationpaymentstatus'].setValue(data.paid)
-    this.f['dateapplied'].setValue(data.dateapplied)
+    this.f['dateapplied'].setValue(this.dateAppliedConvertFormat(data))
     this.f['accountemail'].setValue(data.borrowerfullname)
     this.SpecificApplicantModal = new bootstrap.Modal(element, {})
     this.SpecificApplicantModal?.show();
@@ -266,7 +268,7 @@ ExecuteSpecificApplicantForm()
       suffixname: this.f['applicantsuffixname'].value,
       status: statusValue,
       isread: false,
-      date: moment(new Date()).format('MMMM DD YYYY HH:mm A'),
+      date: moment(new Date()).format('MM-DD-YYYY HH:mm'),
       schedule: schedule
     }
     return this.createService.addNotificationForUsersWhenTheirApplicationStatusHasChanged(this.f['userid'].value, notificationObjectParameter) 
@@ -310,6 +312,10 @@ validateBirthDateIfTheDateIsValid()
   
 }
 
+dateAppliedConvertFormat(data: Application) 
+{
+    return moment(data.dateapplied).format('MMMM DD, YYYY hh:mm A')
+}
 
 
 

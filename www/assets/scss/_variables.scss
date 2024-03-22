@@ -4,28 +4,81 @@ $CustomWhite: #fdfeff;
 $custom-margin-top-mobile: 7rem;
 $custom-margin-top-desktop: 18rem;
 
-:root {
-  --custom-white: #fdfeff;
-  --text-color: #051534;
+$white: #fff;
+// $black: #282936;
+
+$blue: #0b3c99;
+$indigo: #1e1a22;
+$purple: #8561f9;
+$pink: #f7649f;
+$red: #ff0101;
+$orange: #f1963b;
+$yellow: #f6ed49;
+$green: #2dcb73;
+$teal: #4ab0c1;
+$cyan: #438eff;
+
+$primary: $blue;
+$secondary: $indigo;
+$success: $green;
+$info: $teal;
+$warning: $yellow;
+$danger: $red;
+$light: $gray-200;
+$dark: $gray-900;
+
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "success": $success,
+  "info": $info,
+  "warning": $warning,
+  "danger": $danger,
+  "light": $light,
+  "dark": $dark,
+);
+
+h1,
+.subheading-style {
+  font-weight: 800;
 }
 
-.shadow {
-  box-shadow: 0px 2px 3px rgba(3, 7, 18, 0.01),
-    0px 8px 11px rgba(3, 7, 18, 0.03), 0px 18px 25px rgba(3, 7, 18, 0.04),
-    0px 32px 44px rgba(3, 7, 18, 0.06);
+///// break points /////
+@media (min-width: 330px) {
+  h1.heading-style {
+    margin-top: 0;
+    font-size: 35px;
+  }
+  p.paragraph-style {
+    font-size: 1.2em;
+  }
+  h2.subheading-style {
+    font-size: 30px;
+    font-weight: 800;
+  }
+}
+@media (min-width: 600px) {
+  h1.heading-style {
+    font-size: 45px;
+  }
+  p.paragraph-style {
+    font-size: 1.5em;
+  }
+  h2.subheading-style {
+    font-size: 35px;
+    font-weight: 800;
+  }
 }
 
-@font-face {
-  font-family: "PrimaryFont";
-  src: url("./font/secondaryFont/Karla-Regular.ttf");
-}
-
-@font-face {
-  font-family: "SecondaryFont";
-  src: url("./font/primaryFont/Rubik-Bold.ttf");
-}
-
-@font-face {
-  font-family: "SecondaryFontMedium";
-  src: url("./font/primaryFont/Rubik-Medium.ttf");
+@media (min-width: 1400px) {
+  h1.heading-style {
+    font-size: 68px;
+  }
+  p.paragraph-style {
+    font-size: 1.8em;
+  }
+  h2.subheading-style {
+    font-size: 56px;
+    font-weight: 800;
+  }
 }

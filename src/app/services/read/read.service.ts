@@ -9,21 +9,17 @@ export class ReadService {
 
   constructor(private firestore: Firestore) { }
 
-
-
   getApplicationByUserID(userID: any)
   {
     let $getDataQuery = collection(this.firestore,`Applications`);
     const q = query($getDataQuery, where('userid', '==', userID));
     return collectionData(q) as Observable<any[]>;
   }
-
   getApplications() 
   {
     let $getDataQuery = collection(this.firestore, 'Applications');
     return collectionData($getDataQuery, {idField: 'id'}) as Observable<any[]>;
   }
-
   getUserByID(userID: any) 
   {
     let $getDataQuery = doc(this.firestore, `User/${userID}`);
@@ -33,5 +29,11 @@ export class ReadService {
   {
     let $getDataQuery = collection(this.firestore, 'User');
     return collectionData($getDataQuery, {idField: 'id'}) as Observable<any>;
+  }
+
+  getUserNotifications(userID: any) 
+  {
+    let $getDataQuery = collection(this.firestore, `User/${userID}/Notifications`)
+    return collectionData($getDataQuery, {idField: 'id'}) as Observable<any[]>;
   }
 }
